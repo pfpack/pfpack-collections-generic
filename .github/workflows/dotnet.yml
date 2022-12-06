@@ -48,23 +48,6 @@ jobs:
     - name: Test Collections.EqualityComparers.Tests
       run: dotnet test ./src/*/*/Collections.EqualityComparers.Tests.csproj --no-restore  -c Release
 
-    # Collections.FlatArray
-
-    - name: Restore Collections.FlatArray
-      run: dotnet restore ./src/*/*/Collections.FlatArray.csproj
-
-    - name: Build Collections.FlatArray
-      run: dotnet build ./src/*/*/Collections.FlatArray.csproj --no-restore  -c Release
-
-    - name: Pack Collections.FlatArray
-      run: dotnet pack ./src/*/*/Collections.FlatArray.csproj --no-restore -o ~/nuget  -c Release
-
-    - name: Restore Collections.FlatArray.Tests
-      run: dotnet restore ./src/*/*/Collections.FlatArray.Tests.csproj
-
-    - name: Test Collections.FlatArray.Tests
-      run: dotnet test ./src/*/*/Collections.FlatArray.Tests.csproj --no-restore  -c Release
-
     # Collections
 
     - name: Restore Collections
