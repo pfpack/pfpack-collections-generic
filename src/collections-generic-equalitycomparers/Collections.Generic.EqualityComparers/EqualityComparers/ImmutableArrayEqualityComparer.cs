@@ -53,7 +53,7 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public int GetHashCode(ImmutableArray<T> obj)
     {
-        if (obj.IsDefault) // Return zero instead of throwing ArgumentNullException
+        if (obj.IsDefault) // The default means null; Return zero instead of throwing ArgumentNullException
         {
             return default;
         }
