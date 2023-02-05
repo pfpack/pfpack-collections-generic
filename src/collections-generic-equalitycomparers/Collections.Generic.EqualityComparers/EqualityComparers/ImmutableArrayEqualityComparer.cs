@@ -2,7 +2,7 @@
 
 namespace System.Collections.Generic;
 
-public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<ImmutableArray<T>>
+public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<ImmutableArray<T>>, IEqualityComparer<ImmutableArray<T>?>
 {
     private readonly IEqualityComparer<T> comparer;
 
@@ -52,7 +52,7 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
     }
 
     public int GetHashCode(ImmutableArray<T> obj)
-    {        
+    {
         if (obj.IsDefault) // Return zero instead of throwing ArgumentNullException
         {
             return default;
@@ -68,6 +68,14 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
         return builder.ToHashCode();
     }
+
+    public bool Equals(ImmutableArray<T>? x, ImmutableArray<T>? y)
+        =>
+        Equals(x.GetValueOrDefault(), y.GetValueOrDefault());
+
+    public int GetHashCode(ImmutableArray<T>? obj)
+        =>
+        GetHashCode(obj.GetValueOrDefault());
 
     private static class InnerDefault
     {
