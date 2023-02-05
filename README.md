@@ -1,5 +1,3 @@
-# PrimeFuncPack Collections
+# PrimeFuncPack Generic Collections
 
-PrimeFuncPack Collections is a core library pack for .NET consisting of useful collection extensions:
-- Collection equality comparers (implementing value equality);
-- Immutable FlatArray.
+PrimeFuncPack Generic Collections is a core library pack for .NET consisting of collection extensions such as collection value equality comparers.

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
-namespace System.Collections.Immutable;
+namespace System.Collections.Generic;
 
-public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<ImmutableArray<T>>
+public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<ImmutableArray<T>>, IEqualityComparer<ImmutableArray<T>?>
 {
     private readonly IEqualityComparer<T> comparer;
 
@@ -24,20 +24,12 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public bool Equals(ImmutableArray<T> x, ImmutableArray<T> y)
     {
-        // ImmutableArray 'reference' equality
-        if (x.Equals(y))
+        if (x.Equals(y)) // Check if the values' underlying arrays are reference equal (incl. the null case)
         {
             return true;
         }
 
-        // Redundant since the 'reference' equality check is already done
-        // Keep for safety purposes to avoid possible NullReferenceException
-        if (x.IsDefault && y.IsDefault)
-        {
-            return true;
-        }
-
-        if (x.IsDefault || y.IsDefault)
+        if (x.IsDefault || y.IsDefault) // The default means null
         {
             return false;
         }
@@ -61,8 +53,7 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public int GetHashCode(ImmutableArray<T> obj)
     {
-        // Return zero instead of throwing ArgumentNullException
-        if (obj.IsDefault)
+        if (obj.IsDefault) // Return zero instead of throwing ArgumentNullException
         {
             return default;
         }
@@ -77,6 +68,14 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
         return builder.ToHashCode();
     }
+
+    public bool Equals(ImmutableArray<T>? x, ImmutableArray<T>? y)
+        =>
+        Equals(x ?? default, y ?? default); // The default means null
+
+    public int GetHashCode(ImmutableArray<T>? obj)
+        =>
+        GetHashCode(obj ?? default); // The default means null
 
     private static class InnerDefault
     {

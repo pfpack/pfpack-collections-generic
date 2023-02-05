@@ -1,26 +1,26 @@
 ﻿namespace System.Collections.Generic;
 
-public sealed class ReadOnlyListEqualityComparer<T> : IEqualityComparer<IReadOnlyList<T>>
+public sealed class ArrayEqualityComparer<T> : IEqualityComparer<T[]>
 {
     private readonly IEqualityComparer<T> comparer;
 
-    private ReadOnlyListEqualityComparer(IEqualityComparer<T> comparer)
+    private ArrayEqualityComparer(IEqualityComparer<T> comparer)
         =>
         this.comparer = comparer;
 
-    public static ReadOnlyListEqualityComparer<T> Create(IEqualityComparer<T>? comparer)
+    public static ArrayEqualityComparer<T> Create(IEqualityComparer<T>? comparer)
         =>
         new(comparer ?? EqualityComparer<T>.Default);
 
-    public static ReadOnlyListEqualityComparer<T> Create()
+    public static ArrayEqualityComparer<T> Create()
         =>
         new(EqualityComparer<T>.Default);
 
-    public static ReadOnlyListEqualityComparer<T> Default
+    public static ArrayEqualityComparer<T> Default
         =>
         InnerDefault.Value;
 
-    public bool Equals(IReadOnlyList<T>? x, IReadOnlyList<T>? y)
+    public bool Equals(T[]? x, T[]? y)
     {
         if (ReferenceEquals(x, y))
         {
@@ -32,12 +32,12 @@ public sealed class ReadOnlyListEqualityComparer<T> : IEqualityComparer<IReadOnl
             return false;
         }
 
-        if (x.Count != y.Count)
+        if (x.Length != y.Length)
         {
             return false;
         }
 
-        for (int i = 0; i < x.Count; i++)
+        for (int i = 0; i < x.Length; i++)
         {
             if (comparer.Equals(x[i], y[i]))
             {
@@ -49,17 +49,16 @@ public sealed class ReadOnlyListEqualityComparer<T> : IEqualityComparer<IReadOnl
         return true;
     }
 
-    public int GetHashCode(IReadOnlyList<T> obj)
+    public int GetHashCode(T[]? obj)
     {
-        // Return zero instead of throwing ArgumentNullException
-        if (obj is null)
+        if (obj is null) // Return zero instead of throwing ArgumentNullException
         {
             return default;
         }
 
         HashCode builder = new();
 
-        for (int i = 0; i < obj.Count; i++)
+        for (int i = 0; i < obj.Length; i++)
         {
             var item = obj[i];
             builder.Add(item is null ? default : comparer.GetHashCode(item));
@@ -70,6 +69,6 @@ public sealed class ReadOnlyListEqualityComparer<T> : IEqualityComparer<IReadOnl
 
     private static class InnerDefault
     {
-        internal static readonly ReadOnlyListEqualityComparer<T> Value = Create();
+        internal static readonly ArrayEqualityComparer<T> Value = Create();
     }
 }

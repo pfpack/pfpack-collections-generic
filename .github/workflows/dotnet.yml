@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ main, dev, dev/*, feature/*, fix/*, release/* ]
+    branches: [ main, dev, feature/*, fix/*, release/* ]
 
   pull_request:
     branches: [ main ]
@@ -21,7 +21,9 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: |
+            6.0.x
+            7.0.x
 
     # Create Local NuGet Source
 
@@ -31,33 +33,33 @@ jobs:
     - name: Add Local Nuget Source
       run: dotnet nuget add source ~/nuget
 
-    # Collections.EqualityComparers
+    # EqualityComparers
 
-    - name: Restore Collections.EqualityComparers
-      run: dotnet restore ./src/*/*/Collections.EqualityComparers.csproj
+    - name: Restore EqualityComparers
+      run: dotnet restore ./src/*/*/Collections.Generic.EqualityComparers.csproj
 
-    - name: Build Collections.EqualityComparers
-      run: dotnet build ./src/*/*/Collections.EqualityComparers.csproj --no-restore  -c Release
+    - name: Build EqualityComparers
+      run: dotnet build ./src/*/*/Collections.Generic.EqualityComparers.csproj --no-restore  -c Release
 
-    - name: Pack Collections.EqualityComparers
-      run: dotnet pack ./src/*/*/Collections.EqualityComparers.csproj --no-restore -o ~/nuget  -c Release
+    - name: Pack EqualityComparers
+      run: dotnet pack ./src/*/*/Collections.Generic.EqualityComparers.csproj --no-restore -o ~/nuget  -c Release
 
-    - name: Restore Collections.EqualityComparers.Tests
-      run: dotnet restore ./src/*/*/Collections.EqualityComparers.Tests.csproj
+    - name: Restore EqualityComparers.Tests
+      run: dotnet restore ./src/*/*/Collections.Generic.EqualityComparers.Tests.csproj
 
-    - name: Test Collections.EqualityComparers.Tests
-      run: dotnet test ./src/*/*/Collections.EqualityComparers.Tests.csproj --no-restore  -c Release
+    - name: Test EqualityComparers.Tests
+      run: dotnet test ./src/*/*/Collections.Generic.EqualityComparers.Tests.csproj --no-restore  -c Release
 
     # Collections
 
     - name: Restore Collections
-      run: dotnet restore ./src/*/*/Collections.csproj
+      run: dotnet restore ./src/*/*/Collections.Generic.csproj
 
     - name: Build Collections
-      run: dotnet build ./src/*/*/Collections.csproj --no-restore  -c Release
+      run: dotnet build ./src/*/*/Collections.Generic.csproj --no-restore  -c Release
 
     - name: Pack Collections
-      run: dotnet pack ./src/*/*/Collections.csproj --no-restore -o ~/nuget  -c Release
+      run: dotnet pack ./src/*/*/Collections.Generic.csproj --no-restore -o ~/nuget  -c Release
 
       # Push
 
