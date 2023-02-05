@@ -24,12 +24,12 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public bool Equals(ImmutableArray<T> x, ImmutableArray<T> y)
     {
-        if (x.Equals(y)) // Check if the values' underlying arrays are reference equal
+        if (x.Equals(y)) // Check if the values' underlying arrays are reference equal (incl. the null case)
         {
             return true;
         }
 
-        if (x.IsDefault || y.IsDefault)
+        if (x.IsDefault || y.IsDefault) // The default means null
         {
             return false;
         }
@@ -71,11 +71,11 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public bool Equals(ImmutableArray<T>? x, ImmutableArray<T>? y)
         =>
-        Equals(x.GetValueOrDefault(), y.GetValueOrDefault());
+        Equals(x.GetValueOrDefault(), y.GetValueOrDefault()); // The default means null
 
     public int GetHashCode(ImmutableArray<T>? obj)
         =>
-        GetHashCode(obj.GetValueOrDefault());
+        GetHashCode(obj.GetValueOrDefault()); // The default means null
 
     private static class InnerDefault
     {
