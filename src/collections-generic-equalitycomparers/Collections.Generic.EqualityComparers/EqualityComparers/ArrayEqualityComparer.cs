@@ -49,7 +49,7 @@ public sealed class ArrayEqualityComparer<T> : IEqualityComparer<T[]>
         return true;
     }
 
-    public int GetHashCode(T[] obj)
+    public int GetHashCode(T[]? obj)
     {
         if (obj is null) // Return zero instead of throwing ArgumentNullException
         {

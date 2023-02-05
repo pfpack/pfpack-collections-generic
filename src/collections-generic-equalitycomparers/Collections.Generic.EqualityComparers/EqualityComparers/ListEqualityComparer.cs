@@ -26,7 +26,7 @@ public sealed class ListEqualityComparer<T> : IEqualityComparer<IList<T>>, IEqua
         =>
         InnerEquals(x, y);
 
-    public int GetHashCode(IList<T> obj)
+    public int GetHashCode(IList<T>? obj)
         =>
         InnerGetHashCode(obj);
 
@@ -34,7 +34,7 @@ public sealed class ListEqualityComparer<T> : IEqualityComparer<IList<T>>, IEqua
         =>
         InnerEquals(x, y);
 
-    public int GetHashCode(List<T> obj)
+    public int GetHashCode(List<T>? obj)
         =>
         InnerGetHashCode(obj);
 
@@ -69,7 +69,7 @@ public sealed class ListEqualityComparer<T> : IEqualityComparer<IList<T>>, IEqua
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private int InnerGetHashCode(IList<T> obj)
+    private int InnerGetHashCode(IList<T>? obj)
     {
         if (obj is null) // Return zero instead of throwing ArgumentNullException
         {

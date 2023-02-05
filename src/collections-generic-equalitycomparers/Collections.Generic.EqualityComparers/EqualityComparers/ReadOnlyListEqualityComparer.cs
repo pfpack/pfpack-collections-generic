@@ -49,7 +49,7 @@ public sealed class ReadOnlyListEqualityComparer<T> : IEqualityComparer<IReadOnl
         return true;
     }
 
-    public int GetHashCode(IReadOnlyList<T> obj)
+    public int GetHashCode(IReadOnlyList<T>? obj)
     {
         if (obj is null) // Return zero instead of throwing ArgumentNullException
         {
