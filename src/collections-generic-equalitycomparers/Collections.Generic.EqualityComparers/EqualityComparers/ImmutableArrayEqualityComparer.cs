@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
-namespace System.Collections.Immutable;
+namespace System.Collections.Generic;
 
 public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<ImmutableArray<T>>
 {
@@ -24,15 +24,7 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public bool Equals(ImmutableArray<T> x, ImmutableArray<T> y)
     {
-        // ImmutableArray 'reference' equality
-        if (x.Equals(y))
-        {
-            return true;
-        }
-
-        // Redundant since the 'reference' equality check is already done
-        // Keep for safety purposes to avoid possible NullReferenceException
-        if (x.IsDefault && y.IsDefault)
+        if (x.Equals(y)) // Check if the values' underlying arrays are reference equal
         {
             return true;
         }
@@ -60,9 +52,8 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
     }
 
     public int GetHashCode(ImmutableArray<T> obj)
-    {
-        // Return zero instead of throwing ArgumentNullException
-        if (obj.IsDefault)
+    {        
+        if (obj.IsDefault) // Return zero instead of throwing ArgumentNullException
         {
             return default;
         }

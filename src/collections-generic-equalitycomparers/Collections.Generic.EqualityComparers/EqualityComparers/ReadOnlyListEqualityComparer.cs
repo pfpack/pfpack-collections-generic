@@ -51,8 +51,7 @@ public sealed class ReadOnlyListEqualityComparer<T> : IEqualityComparer<IReadOnl
 
     public int GetHashCode(IReadOnlyList<T> obj)
     {
-        // Return zero instead of throwing ArgumentNullException
-        if (obj is null)
+        if (obj is null) // Return zero instead of throwing ArgumentNullException
         {
             return default;
         }

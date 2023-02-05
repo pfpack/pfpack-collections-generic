@@ -71,8 +71,7 @@ public sealed class ListEqualityComparer<T> : IEqualityComparer<IList<T>>, IEqua
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private int InnerGetHashCode(IList<T> obj)
     {
-        // Return zero instead of throwing ArgumentNullException
-        if (obj is null)
+        if (obj is null) // Return zero instead of throwing ArgumentNullException
         {
             return default;
         }

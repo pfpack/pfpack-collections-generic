@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -9,15 +9,15 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/pfpack/pfpack-collections</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/pfpack/pfpack-collections</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/pfpack/pfpack-collections-generic</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pfpack/pfpack-collections-generic</RepositoryUrl>
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
-    <Copyright>Copyright © 2022 Andrei Sergeev, Pavel Moskovoy</Copyright>
-    <Description>PrimeFuncPack Collections.EqualityComparers is a core library for .NET consisting of collection equality comparers (implementing value equality).</Description>
+    <Copyright>Copyright © 2022-2023 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <Description>PrimeFuncPack Generic Collections is a core library pack for .NET consisting of collection extensions such as collection value equality comparers.</Description>
     <RootNamespace>System.Collections.Generic</RootNamespace>
-    <AssemblyName>EarlyFuncPack.Collections.EqualityComparers</AssemblyName>
-    <Version>0.4.1</Version>
+    <AssemblyName>EarlyFuncPack.Collections.Generic</AssemblyName>
+    <Version>0.12.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,10 +25,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\docs\collections-equality-comparers\README.md">
+    <None Include="..\..\..\docs\collections\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EarlyFuncPack.Collections.Generic.EqualityComparers" Version="0.12.0" />
   </ItemGroup>
 
 </Project>
