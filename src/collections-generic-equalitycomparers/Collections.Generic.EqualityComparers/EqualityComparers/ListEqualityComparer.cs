@@ -26,13 +26,13 @@ public sealed class ListEqualityComparer<T> : IEqualityComparer<IList<T>>, IEqua
         =>
         InnerEquals(x, y);
 
-    public bool Equals(List<T>? x, List<T>? y)
-        =>
-        InnerEquals(x, y);
-
     public int GetHashCode(IList<T> obj)
         =>
         InnerGetHashCode(obj);
+
+    public bool Equals(List<T>? x, List<T>? y)
+        =>
+        InnerEquals(x, y);
 
     public int GetHashCode(List<T> obj)
         =>
