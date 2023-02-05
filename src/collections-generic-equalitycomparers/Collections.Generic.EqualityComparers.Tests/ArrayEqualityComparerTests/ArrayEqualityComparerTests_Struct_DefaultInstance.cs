@@ -2,9 +2,9 @@
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
-public sealed class ArrayEqualityComparerTests_DefaultIntstance_Struct : ArrayEqualityComparerTestsBase_Struct
+public sealed class ArrayEqualityComparerTests_Struct_DefaultInstance : ArrayEqualityComparerTestsBase_Struct
 {
-    public ArrayEqualityComparerTests_DefaultIntstance_Struct()
+    public ArrayEqualityComparerTests_Struct_DefaultInstance()
         : base(() => ArrayEqualityComparer<int>.Default)
     {
     }
