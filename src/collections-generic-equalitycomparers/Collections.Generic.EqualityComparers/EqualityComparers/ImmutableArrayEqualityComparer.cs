@@ -71,11 +71,11 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public bool Equals(ImmutableArray<T>? x, ImmutableArray<T>? y)
         =>
-        Equals(x.GetValueOrDefault(), y.GetValueOrDefault()); // The default means null
+        Equals(x.GetValueOrDefault(), y.GetValueOrDefault());
 
     public int GetHashCode(ImmutableArray<T>? obj)
         =>
-        GetHashCode(obj.GetValueOrDefault()); // The default means null
+        GetHashCode(obj.GetValueOrDefault());
 
     private static class InnerDefault
     {
