@@ -51,7 +51,7 @@ public sealed class ListEqualityComparer<T> : IEqualityComparer<IList<T>>, IEqua
 
     public int GetHashCode(IList<T>? obj)
     {
-        if (obj is null) // Return zero instead of throwing ArgumentNullException
+        if (obj is null)
         {
             return default;
         }
