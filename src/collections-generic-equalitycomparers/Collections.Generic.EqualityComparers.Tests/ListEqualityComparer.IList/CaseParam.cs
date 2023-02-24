@@ -6,7 +6,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEquality
 // (there is a difference between test cases with collections equal by value and by reference)
 public sealed class CaseParam<T>
 {
-    public IList<T> Items { get; }
+    public IList<T>? Items { get; }
 
-    public CaseParam(IList<T> items) => Items = items;
+    public CaseParam(IList<T>? items) => Items = items;
 }

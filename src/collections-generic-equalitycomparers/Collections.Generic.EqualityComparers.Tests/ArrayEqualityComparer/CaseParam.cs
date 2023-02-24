@@ -4,7 +4,7 @@
 // (there is a difference between test cases with collections equal by value and by reference)
 public sealed class CaseParam<T>
 {
-    public T[] Items { get; }
+    public T[]? Items { get; }
 
-    public CaseParam(T[] items) => Items = items;
+    public CaseParam(T[]? items) => Items = items;
 }

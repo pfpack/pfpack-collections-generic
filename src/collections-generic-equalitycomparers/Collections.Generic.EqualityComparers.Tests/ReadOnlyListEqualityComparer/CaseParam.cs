@@ -6,7 +6,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyList
 // (there is a difference between test cases with collections equal by value and by reference)
 public sealed class CaseParam<T>
 {
-    public IReadOnlyList<T> Items { get; }
+    public IReadOnlyList<T>? Items { get; }
 
-    public CaseParam(IReadOnlyList<T> items) => Items = items;
+    public CaseParam(IReadOnlyList<T>? items) => Items = items;
 }
