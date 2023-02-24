@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Xunit;
 
-namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
+namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
 
-public abstract class ArrayEqualityComparerTestsBase<T>
+public abstract class EqualityComparerTestsBase<T>
 {
-    protected readonly ArrayEqualityComparer<T> comparer;
+    protected readonly ReadOnlyListEqualityComparer<T> comparer;
 
-    protected ArrayEqualityComparerTestsBase(Func<ArrayEqualityComparer<T>> comparerFactory)
+    protected EqualityComparerTestsBase(Func<ReadOnlyListEqualityComparer<T>> comparerFactory)
     {
         comparer = comparerFactory.Invoke();
         Debug.Assert(comparer is not null);

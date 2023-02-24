@@ -4,11 +4,23 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
+internal static class CustomList
+{
+    internal static CustomList<T> Create<T>(params T[] items) => new(items);
+}
+
 internal sealed class CustomList<T> : IList<T>
 {
+    private static class InnerEmpty
+    {
+        internal static readonly CustomList<T> Value = new();
+    }
+
+    internal static CustomList<T> Empty => InnerEmpty.Value;
+
     private readonly T[] items;
 
-    public CustomList(T[] items) => this.items = items;
+    internal CustomList(params T[] items) => this.items = items;
 
     public bool IsReadOnly => true;
 
