@@ -55,58 +55,43 @@ public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<
                 new CaseParam<string>(@case[1]),
             });
 
-    private static IEnumerable<string[][]> EnumerateSourceAreEqualCases()
+    private static IEnumerable<IReadOnlyList<string>[]> EnumerateSourceAreEqualCases()
     {
         yield return new[]
         {
-            Array.Empty<string>(),
-            Array.Empty<string>(),
+            CustomReadOnlyList<string>.Empty,
+            CustomReadOnlyList<string>.Empty,
         };
         yield return new[]
         {
-            EmptyArray<string>.Value,
-            EmptyArray<string>.Value,
+            new CustomReadOnlyList<string>(),
+            new CustomReadOnlyList<string>(),
         };
         yield return new[]
         {
-            Array.Empty<string>(),
-            EmptyArray<string>.Value,
+            CustomReadOnlyList.Create("1"),
+            CustomReadOnlyList.Create("1"),
         };
         yield return new[]
         {
-            EmptyArray<string>.Value,
-            Array.Empty<string>(),
+            CustomReadOnlyList.Create("1", "2"),
+            CustomReadOnlyList.Create("1", "2"),
         };
         yield return new[]
         {
-            EmptyArray<string>.Create(),
-            EmptyArray<string>.Create(),
+            CustomReadOnlyList.Create("1", "2", "3"),
+            CustomReadOnlyList.Create("1", "2", "3"),
         };
         yield return new[]
         {
-            new[] { "1" },
-            new[] { "1" },
-        };
-        yield return new[]
-        {
-            new[] { "1", "2" },
-            new[] { "1", "2" },
-        };
-        yield return new[]
-        {
-            new[] { "1", "2", "3" },
-            new[] { "1", "2", "3" },
-        };
-        yield return new[]
-        {
-            new[] { "1", "2", "3", "4" },
-            new[] { "1", "2", "3", "4" },
+            CustomReadOnlyList.Create("1", "2", "3", "4"),
+            CustomReadOnlyList.Create("1", "2", "3", "4"),
         };
 
-        var array1 = new[] { "1" };
-        var array2 = new[] { "1", "2" };
-        var array3 = new[] { "1", "2", "3" };
-        var array4 = new[] { "1", "2", "3", "4" };
+        var array1 = CustomReadOnlyList.Create("1");
+        var array2 = CustomReadOnlyList.Create("1", "2");
+        var array3 = CustomReadOnlyList.Create("1", "2", "3");
+        var array4 = CustomReadOnlyList.Create("1", "2", "3", "4");
         yield return new[]
         {
             array1,
@@ -129,57 +114,47 @@ public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<
         };
     }
 
-    private static IEnumerable<string[][]> EnumerateSourceAreNotEqualCases()
+    private static IEnumerable<IReadOnlyList<string>[]> EnumerateSourceAreNotEqualCases()
     {
         yield return new[]
         {
-            Array.Empty<string>(),
-            new[] { "1" },
+            CustomReadOnlyList<string>.Empty,
+            CustomReadOnlyList.Create("1"),
         };
         yield return new[]
         {
-            new[] { "1" },
-            Array.Empty<string>(),
+            CustomReadOnlyList.Create("1"),
+            CustomReadOnlyList<string>.Empty,
         };
         yield return new[]
         {
-            EmptyArray<string>.Value,
-            new[] { "1" },
+            CustomReadOnlyList.Create("1"),
+            CustomReadOnlyList.Create("1", "2"),
         };
         yield return new[]
         {
-            new[] { "1" },
-            EmptyArray<string>.Value,
+            CustomReadOnlyList.Create("1", "2"),
+            CustomReadOnlyList.Create("1"),
         };
         yield return new[]
         {
-            new[] { "1" },
-            new[] { "1", "2" },
+            CustomReadOnlyList.Create("1", "2"),
+            CustomReadOnlyList.Create("1", "2", "3"),
         };
         yield return new[]
         {
-            new[] { "1", "2" },
-            new[] { "1" },
+            CustomReadOnlyList.Create("1", "2", "3"),
+            CustomReadOnlyList.Create("1", "2"),
         };
         yield return new[]
         {
-            new[] { "1", "2" },
-            new[] { "1", "2", "3" },
+            CustomReadOnlyList.Create("1", "2", "3"),
+            CustomReadOnlyList.Create("1", "2", "3", "4"),
         };
         yield return new[]
         {
-            new[] { "1", "2", "3" },
-            new[] { "1", "2" },
-        };
-        yield return new[]
-        {
-            new[] { "1", "2", "3" },
-            new[] { "1", "2", "3", "4" },
-        };
-        yield return new[]
-        {
-            new[] { "1", "2", "3", "4" },
-            new[] { "1", "2", "3" },
+            CustomReadOnlyList.Create("1", "2", "3", "4"),
+            CustomReadOnlyList.Create("1", "2", "3"),
         };
     }
 }

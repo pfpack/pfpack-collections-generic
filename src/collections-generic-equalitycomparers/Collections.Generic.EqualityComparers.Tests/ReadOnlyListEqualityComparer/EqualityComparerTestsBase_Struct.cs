@@ -55,58 +55,43 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
                 new CaseParam<int>(@case[1]),
             });
 
-    private static IEnumerable<int[][]> EnumerateSourceAreEqualCases()
+    private static IEnumerable<IReadOnlyList<int>[]> EnumerateSourceAreEqualCases()
     {
         yield return new[]
         {
-            Array.Empty<int>(),
-            Array.Empty<int>(),
+            CustomReadOnlyList<int>.Empty,
+            CustomReadOnlyList<int>.Empty,
         };
         yield return new[]
         {
-            EmptyArray<int>.Value,
-            EmptyArray<int>.Value,
+            new CustomReadOnlyList<int>(),
+            new CustomReadOnlyList<int>(),
         };
         yield return new[]
         {
-            Array.Empty<int>(),
-            EmptyArray<int>.Value,
+            CustomReadOnlyList.Create(1),
+            CustomReadOnlyList.Create(1),
         };
         yield return new[]
         {
-            EmptyArray<int>.Value,
-            Array.Empty<int>(),
+            CustomReadOnlyList.Create(1, 2),
+            CustomReadOnlyList.Create(1, 2),
         };
         yield return new[]
         {
-            EmptyArray<int>.Create(),
-            EmptyArray<int>.Create(),
+            CustomReadOnlyList.Create(1, 2, 3),
+            CustomReadOnlyList.Create(1, 2, 3),
         };
         yield return new[]
         {
-            new[] { 1 },
-            new[] { 1 },
-        };
-        yield return new[]
-        {
-            new[] { 1, 2 },
-            new[] { 1, 2 },
-        };
-        yield return new[]
-        {
-            new[] { 1, 2, 3 },
-            new[] { 1, 2, 3 },
-        };
-        yield return new[]
-        {
-            new[] { 1, 2, 3, 4 },
-            new[] { 1, 2, 3, 4 },
+            CustomReadOnlyList.Create(1, 2, 3, 4),
+            CustomReadOnlyList.Create(1, 2, 3, 4),
         };
 
-        var array1 = new[] { 1 };
-        var array2 = new[] { 1, 2 };
-        var array3 = new[] { 1, 2, 3 };
-        var array4 = new[] { 1, 2, 3, 4 };
+        var array1 = CustomReadOnlyList.Create(1);
+        var array2 = CustomReadOnlyList.Create(1, 2);
+        var array3 = CustomReadOnlyList.Create(1, 2, 3);
+        var array4 = CustomReadOnlyList.Create(1, 2, 3, 4);
         yield return new[]
         {
             array1,
@@ -129,57 +114,47 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
         };
     }
 
-    private static IEnumerable<int[][]> EnumerateSourceAreNotEqualCases()
+    private static IEnumerable<IReadOnlyList<int>[]> EnumerateSourceAreNotEqualCases()
     {
         yield return new[]
         {
-            Array.Empty<int>(),
-            new[] { 1 },
+            CustomReadOnlyList<int>.Empty,
+            CustomReadOnlyList.Create(1),
         };
         yield return new[]
         {
-            new[] { 1 },
-            Array.Empty<int>(),
+            CustomReadOnlyList.Create(1),
+            CustomReadOnlyList<int>.Empty,
         };
         yield return new[]
         {
-            EmptyArray<int>.Value,
-            new[] { 1 },
+            CustomReadOnlyList.Create(1),
+            CustomReadOnlyList.Create(1, 2),
         };
         yield return new[]
         {
-            new[] { 1 },
-            EmptyArray<int>.Value,
+            CustomReadOnlyList.Create(1, 2),
+            CustomReadOnlyList.Create(1),
         };
         yield return new[]
         {
-            new[] { 1 },
-            new[] { 1, 2 },
+            CustomReadOnlyList.Create(1, 2),
+            CustomReadOnlyList.Create(1, 2, 3),
         };
         yield return new[]
         {
-            new[] { 1, 2 },
-            new[] { 1 },
+            CustomReadOnlyList.Create(1, 2, 3),
+            CustomReadOnlyList.Create(1, 2),
         };
         yield return new[]
         {
-            new[] { 1, 2 },
-            new[] { 1, 2, 3 },
+            CustomReadOnlyList.Create(1, 2, 3),
+            CustomReadOnlyList.Create(1, 2, 3, 4),
         };
         yield return new[]
         {
-            new[] { 1, 2, 3 },
-            new[] { 1, 2 },
-        };
-        yield return new[]
-        {
-            new[] { 1, 2, 3 },
-            new[] { 1, 2, 3, 4 },
-        };
-        yield return new[]
-        {
-            new[] { 1, 2, 3, 4 },
-            new[] { 1, 2, 3 },
+            CustomReadOnlyList.Create(1, 2, 3, 4),
+            CustomReadOnlyList.Create(1, 2, 3),
         };
     }
 }
