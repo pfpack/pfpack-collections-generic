@@ -57,47 +57,47 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
 
     private static IEnumerable<int[][]> EnumerateSourceAreEqualCases()
     {
-        yield return new int[][]
+        yield return new[]
         {
             Array.Empty<int>(),
             Array.Empty<int>(),
         };
-        yield return new int[][]
+        yield return new[]
         {
             EmptyArray<int>.Value,
             EmptyArray<int>.Value,
         };
-        yield return new int[][]
+        yield return new[]
         {
             Array.Empty<int>(),
             EmptyArray<int>.Value,
         };
-        yield return new int[][]
+        yield return new[]
         {
             EmptyArray<int>.Value,
             Array.Empty<int>(),
         };
-        yield return new int[][]
+        yield return new[]
         {
             EmptyArray<int>.Create(),
             EmptyArray<int>.Create(),
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1 },
             new[] { 1 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2 },
             new[] { 1, 2 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2, 3 },
             new[] { 1, 2, 3 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2, 3, 4 },
             new[] { 1, 2, 3, 4 },
@@ -107,22 +107,22 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
         var array2 = new[] { 1, 2 };
         var array3 = new[] { 1, 2, 3 };
         var array4 = new[] { 1, 2, 3, 4 };
-        yield return new int[][]
+        yield return new[]
         {
             array1,
             array1,
         };
-        yield return new int[][]
+        yield return new[]
         {
             array2,
             array2,
         };
-        yield return new int[][]
+        yield return new[]
         {
             array3,
             array3,
         };
-        yield return new int[][]
+        yield return new[]
         {
             array4,
             array4,
@@ -131,52 +131,52 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
 
     private static IEnumerable<int[][]> EnumerateSourceAreNotEqualCases()
     {
-        yield return new int[][]
+        yield return new[]
         {
             Array.Empty<int>(),
             new[] { 1 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1 },
             Array.Empty<int>(),
         };
-        yield return new int[][]
+        yield return new[]
         {
             EmptyArray<int>.Value,
             new[] { 1 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1 },
             EmptyArray<int>.Value,
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1 },
             new[] { 1, 2 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2 },
             new[] { 1 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2 },
             new[] { 1, 2, 3 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2, 3 },
             new[] { 1, 2 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2, 3 },
             new[] { 1, 2, 3, 4 },
         };
-        yield return new int[][]
+        yield return new[]
         {
             new[] { 1, 2, 3, 4 },
             new[] { 1, 2, 3 },

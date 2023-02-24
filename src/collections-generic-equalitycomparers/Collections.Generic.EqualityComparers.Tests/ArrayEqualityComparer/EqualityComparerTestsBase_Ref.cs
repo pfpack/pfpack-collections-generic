@@ -57,47 +57,47 @@ public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<
 
     private static IEnumerable<string[][]> EnumerateSourceAreEqualCases()
     {
-        yield return new string[][]
+        yield return new[]
         {
             Array.Empty<string>(),
             Array.Empty<string>(),
         };
-        yield return new string[][]
+        yield return new[]
         {
             EmptyArray<string>.Value,
             EmptyArray<string>.Value,
         };
-        yield return new string[][]
+        yield return new[]
         {
             Array.Empty<string>(),
             EmptyArray<string>.Value,
         };
-        yield return new string[][]
+        yield return new[]
         {
             EmptyArray<string>.Value,
             Array.Empty<string>(),
         };
-        yield return new string[][]
+        yield return new[]
         {
             EmptyArray<string>.Create(),
             EmptyArray<string>.Create(),
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1" },
             new[] { "1" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2" },
             new[] { "1", "2" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2", "3" },
             new[] { "1", "2", "3" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2", "3", "4" },
             new[] { "1", "2", "3", "4" },
@@ -107,22 +107,22 @@ public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<
         var array2 = new[] { "1", "2" };
         var array3 = new[] { "1", "2", "3" };
         var array4 = new[] { "1", "2", "3", "4" };
-        yield return new string[][]
+        yield return new[]
         {
             array1,
             array1,
         };
-        yield return new string[][]
+        yield return new[]
         {
             array2,
             array2,
         };
-        yield return new string[][]
+        yield return new[]
         {
             array3,
             array3,
         };
-        yield return new string[][]
+        yield return new[]
         {
             array4,
             array4,
@@ -131,52 +131,52 @@ public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<
 
     private static IEnumerable<string[][]> EnumerateSourceAreNotEqualCases()
     {
-        yield return new string[][]
+        yield return new[]
         {
             Array.Empty<string>(),
             new[] { "1" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1" },
             Array.Empty<string>(),
         };
-        yield return new string[][]
+        yield return new[]
         {
             EmptyArray<string>.Value,
             new[] { "1" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1" },
             EmptyArray<string>.Value,
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1" },
             new[] { "1", "2" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2" },
             new[] { "1" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2" },
             new[] { "1", "2", "3" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2", "3" },
             new[] { "1", "2" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2", "3" },
             new[] { "1", "2", "3", "4" },
         };
-        yield return new string[][]
+        yield return new[]
         {
             new[] { "1", "2", "3", "4" },
             new[] { "1", "2", "3" },
