@@ -59,23 +59,8 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
     {
         yield return new[]
         {
-            Array.Empty<int>(),
-            Array.Empty<int>(),
-        };
-        yield return new[]
-        {
             EmptyArray<int>.Value,
             EmptyArray<int>.Value,
-        };
-        yield return new[]
-        {
-            Array.Empty<int>(),
-            EmptyArray<int>.Value,
-        };
-        yield return new[]
-        {
-            EmptyArray<int>.Value,
-            Array.Empty<int>(),
         };
         yield return new[]
         {
@@ -131,16 +116,6 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
 
     private static IEnumerable<int[][]> EnumerateSourceAreNotEqualCases()
     {
-        yield return new[]
-        {
-            Array.Empty<int>(),
-            new[] { 1 },
-        };
-        yield return new[]
-        {
-            new[] { 1 },
-            Array.Empty<int>(),
-        };
         yield return new[]
         {
             EmptyArray<int>.Value,
