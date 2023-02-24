@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Collections.Generic.EqualityComparers\Collections.Generic.EqualityComparers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="1\" />
+  </ItemGroup>
+
 </Project>
