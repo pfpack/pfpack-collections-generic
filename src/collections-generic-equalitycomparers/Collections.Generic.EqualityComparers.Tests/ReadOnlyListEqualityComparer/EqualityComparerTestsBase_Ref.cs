@@ -37,8 +37,6 @@ public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<
         Assert.False(actualEquals);
     }
 
-
-
     public static IEnumerable<object[]> SourceAreEqualCases()
         =>
         EnumerateSourceAreEqualCases().Select(
