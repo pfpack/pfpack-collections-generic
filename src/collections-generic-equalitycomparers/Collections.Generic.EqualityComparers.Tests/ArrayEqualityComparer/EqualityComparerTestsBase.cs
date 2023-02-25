@@ -18,7 +18,8 @@ public abstract class EqualityComparerTestsBase<T>
     [Fact]
     public void Test_GetHashCode_SourceIsNull_ExpectZero()
     {
-        var actual = comparer.GetHashCode(null);
+        T[]? nullObj = null;
+        var actual = comparer.GetHashCode(nullObj);
         Assert.Equal(0, actual);
     }
 }

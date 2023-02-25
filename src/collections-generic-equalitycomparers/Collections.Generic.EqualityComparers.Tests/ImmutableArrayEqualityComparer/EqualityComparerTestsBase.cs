@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using Xunit;
 
-namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
+namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer;
 
 public abstract class EqualityComparerTestsBase<T>
 {
-    protected readonly ReadOnlyListEqualityComparer<T> comparer;
+    protected readonly ImmutableArrayEqualityComparer<T> comparer;
 
-    protected EqualityComparerTestsBase(Func<ReadOnlyListEqualityComparer<T>> comparerFactory)
+    protected EqualityComparerTestsBase(Func<ImmutableArrayEqualityComparer<T>> comparerFactory)
     {
         comparer = comparerFactory.Invoke();
         Debug.Assert(comparer is not null);
@@ -18,7 +19,7 @@ public abstract class EqualityComparerTestsBase<T>
     [Fact]
     public void Test_GetHashCode_SourceIsNull_ExpectZero()
     {
-        IReadOnlyList<T>? nullObj = null;
+        ImmutableArray<T> nullObj = default; 
         var actual = comparer.GetHashCode(nullObj);
         Assert.Equal(0, actual);
     }

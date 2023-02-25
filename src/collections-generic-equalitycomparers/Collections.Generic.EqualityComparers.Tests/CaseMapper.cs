@@ -18,4 +18,8 @@ internal static class CaseMapper
         var defaultEmpty = new List<T>();
         return @case.Select(param => CaseParamMapper.MapToOfList(param, () => defaultEmpty)).ToArray();
     }
+
+    internal static CaseParamOfImmutableArray<T>[] MapToOfImmutableArray<T>(params CaseParamOfArray<T>[] @case)
+        =>
+        @case.Select(param => CaseParamMapper.MapToOfImmutableArray(param)).ToArray();
 }

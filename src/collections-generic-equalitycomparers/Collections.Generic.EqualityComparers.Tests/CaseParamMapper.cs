@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
@@ -25,6 +26,13 @@ internal static class CaseParamMapper
             caseParam.Items,
             defaultEmptySupplier,
             items => new List<T>(items)));
+
+    internal static CaseParamOfImmutableArray<T> MapToOfImmutableArray<T>(CaseParamOfArray<T> caseParam)
+        =>
+        new(InnerMap(
+            caseParam.Items,
+            () => ImmutableArray<T>.Empty,
+            items => ImmutableArray.Create(items)));
 
     private static TResult? InnerMap<T, TResult>(
         T[]? items, Func<TResult> defaultEmptySupplier, Func<T[], TResult> map)
