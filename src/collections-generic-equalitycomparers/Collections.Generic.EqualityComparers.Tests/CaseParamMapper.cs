@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
@@ -8,7 +9,7 @@ internal static class CaseParamMapper
 {
     internal static CaseParamOfIReadOnlyList<T> MapToOfIReadOnlyList<T>(CaseParamOfArray<T> param)
         =>
-        new(InnerMap(
+        new(InnerMapCase(
             param.Items,
             () => null,
             () => CustomReadOnlyList<T>.Empty,
@@ -16,7 +17,7 @@ internal static class CaseParamMapper
 
     internal static CaseParamOfIList<T> MapToOfIList<T>(CaseParamOfArray<T> param)
         =>
-        new(InnerMap(
+        new(InnerMapCase(
             param.Items,
             () => null,
             () => CustomList<T>.Empty,
@@ -24,7 +25,7 @@ internal static class CaseParamMapper
 
     internal static CaseParamOfList<T> MapToOfList<T>(CaseParamOfArray<T> param, Func<List<T>> defaultEmptySupplier)
         =>
-        new(InnerMap(
+        new(InnerMapCase(
             param.Items,
             () => null,
             defaultEmptySupplier,
@@ -32,7 +33,7 @@ internal static class CaseParamMapper
 
     internal static CaseParamOfImmutableArray<T> MapToOfImmutableArray<T>(CaseParamOfArray<T> param)
         =>
-        new(InnerMap(
+        new(InnerMapCase(
             param.Items,
             () => default,
             () => ImmutableArray<T>.Empty,
@@ -40,21 +41,24 @@ internal static class CaseParamMapper
 
     internal static CaseParamOfImmutableArrayNullable<T> MapToOfImmutableArrayNullable<T>(CaseParamOfArray<T> param)
         =>
-        new(InnerMap(
+        new(InnerMapCase(
             param.Items,
             () => default(ImmutableArray<T>?),
             () => ImmutableArray<T>.Empty,
             items => ImmutableArray.Create(items)));
 
-    internal static CaseParamOfImmutableArrayNullable<T> MapToOfImmutableArrayWrapped<T>(CaseParamOfArray<T> param)
-        =>
-        new(InnerMap(
+    internal static CaseParamOfImmutableArrayNullable<T> MapToOfImmutableArrayNullableWrapped<T>(CaseParamOfArray<T> param)
+    {
+        Debug.Assert(param.Items is null, "The input immutable array is expected to be null.");
+
+        return new(InnerMapCase(
             param.Items,
             () => new ImmutableArray<T>?(default),
-            () => ImmutableArray<T>.Empty,
-            items => ImmutableArray.Create(items)));
+            () => throw new InvalidOperationException(),
+            items => throw new InvalidOperationException()));
+    }
 
-    private static TResult? InnerMap<T, TResult>(
+    private static TResult? InnerMapCase<T, TResult>(
         T[]? items,
         Func<TResult?> nullSupplier,
         Func<TResult> defaultEmptySupplier,

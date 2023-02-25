@@ -23,19 +23,42 @@ internal static class CaseMapper
         =>
         @case.Select(param => CaseParamMapper.MapToOfImmutableArray(param)).ToArray();
 
-    internal static IEnumerable<CaseParamOfImmutableArrayNullable<T>[]> MapToOfImmutableArrayNullable<T>(params CaseParamOfArray<T>[] @case)
+    internal static IEnumerable<CaseParamOfImmutableArrayNullable<T>[]> MapToOfImmutableArrayNullable<T>(
+        params CaseParamOfArray<T>[] @case)
     {
-        yield return @case.Select(param => CaseParamMapper.MapToOfImmutableArrayNullable(param)).ToArray();
-        yield return @case.Select(param => CaseParamMapper.MapToOfImmutableArrayWrapped(param)).ToArray();
+        var param0 = @case[0];
+        var param1 = @case[1];
+
         yield return new[]
         {
-            CaseParamMapper.MapToOfImmutableArrayNullable(@case[0]),
-            CaseParamMapper.MapToOfImmutableArrayWrapped(@case[1])
+            CaseParamMapper.MapToOfImmutableArrayNullable(param0),
+            CaseParamMapper.MapToOfImmutableArrayNullable(param1)
         };
-        yield return new[]
+
+        switch (param0.Items, param1.Items)
         {
-            CaseParamMapper.MapToOfImmutableArrayWrapped(@case[0]),
-            CaseParamMapper.MapToOfImmutableArrayNullable(@case[1])
-        };
+            case (null, null):
+                yield return new[]
+                {
+                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param0),
+                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param1)
+                };
+                break;
+
+            case (null, _):
+                yield return new[]
+                {
+                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param0),
+                    CaseParamMapper.MapToOfImmutableArrayNullable(param1)
+                };
+                break;
+            case (_, null):
+                yield return new[]
+                {
+                    CaseParamMapper.MapToOfImmutableArrayNullable(param0),
+                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param1)
+                };
+                break;
+        }
     }
 }
