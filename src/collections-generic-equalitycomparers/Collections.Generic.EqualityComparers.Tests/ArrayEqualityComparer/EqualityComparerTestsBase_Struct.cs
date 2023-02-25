@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ArrayEqualityComparer;
 
-public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBase<int?>
+public sealed class EqualityComparerTestsBase_Struct 
 {
-    protected EqualityComparerTestsBase_Struct(Func<ArrayEqualityComparer<int?>> comparerFactory)
-        : base(comparerFactory)
-    {
-    }
+    private readonly ArrayEqualityComparer<int?> comparer
+        = ArrayEqualityComparer<int?>.Create(CustomEqualityComparer<int?>.Default);
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]

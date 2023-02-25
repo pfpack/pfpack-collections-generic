@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer.Nullable;
 
-public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<string?>
+public sealed class EqualityComparerTestsBase_Ref
 {
-    protected EqualityComparerTestsBase_Ref(Func<ImmutableArrayEqualityComparer<string?>> comparerFactory)
-        : base(comparerFactory)
-    {
-    }
+    private readonly ImmutableArrayEqualityComparer<string?> comparer
+        = ImmutableArrayEqualityComparer<string?>.Create(CustomEqualityComparer<string?>.Default);
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]

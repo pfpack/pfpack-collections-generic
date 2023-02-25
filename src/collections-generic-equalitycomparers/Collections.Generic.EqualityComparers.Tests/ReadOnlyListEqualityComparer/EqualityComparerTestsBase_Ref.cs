@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
 
-public abstract class EqualityComparerTestsBase_Ref : EqualityComparerTestsBase<string?>
+public sealed class EqualityComparerTestsBase_Ref
 {
-    protected EqualityComparerTestsBase_Ref(Func<ReadOnlyListEqualityComparer<string?>> comparerFactory)
-        : base(comparerFactory)
-    {
-    }
+    private readonly ReadOnlyListEqualityComparer<string?> comparer
+        = ReadOnlyListEqualityComparer<string?>.Create(CustomEqualityComparer<string?>.Default);
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
