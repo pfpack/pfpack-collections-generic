@@ -145,6 +145,11 @@ internal static class CaseSourcesArrayStruct
         };
         yield return new[]
         {
+            new int?[] { 1 },
+            new int?[] { null },
+        };
+        yield return new[]
+        {
             new int?[] { 1, 2, 3, 3 },
             new int?[] { 1, 2, 3, 4 },
         };

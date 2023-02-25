@@ -145,6 +145,11 @@ internal static class CaseSourcesArrayRef
         };
         yield return new[]
         {
+            new[] { "1" },
+            new[] { (string?)null },
+        };
+        yield return new[]
+        {
             new[] { "1", "2", "3", "3" },
             new[] { "1", "2", "3", "4" },
         };
