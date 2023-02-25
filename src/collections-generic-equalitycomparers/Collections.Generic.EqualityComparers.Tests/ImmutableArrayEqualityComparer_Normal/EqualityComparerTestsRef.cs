@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer;
+namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer_Normal;
 
 public sealed class EqualityComparerTestsRef
 {
