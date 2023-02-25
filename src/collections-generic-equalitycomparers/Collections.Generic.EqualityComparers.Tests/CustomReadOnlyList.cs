@@ -5,16 +5,11 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
 internal sealed class CustomReadOnlyList<T> : IReadOnlyList<T>
 {
-    private static class InnerEmpty
-    {
-        internal static readonly CustomReadOnlyList<T> Value = new();
-    }
-
-    internal static CustomReadOnlyList<T> Empty => InnerEmpty.Value;
-
     private readonly T[] items;
 
-    internal CustomReadOnlyList(params T[] items) => this.items = items;
+    public CustomReadOnlyList(params T[] items) => this.items = items;
+
+    public static CustomReadOnlyList<T> Empty { get; } = new();
 
     public int Count => items.Length;
 

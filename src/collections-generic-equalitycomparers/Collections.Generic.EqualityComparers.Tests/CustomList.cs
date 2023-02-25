@@ -6,16 +6,11 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
 internal sealed class CustomList<T> : IList<T>
 {
-    private static class InnerEmpty
-    {
-        internal static readonly CustomList<T> Value = new();
-    }
-
-    internal static CustomList<T> Empty => InnerEmpty.Value;
-
     private readonly T[] items;
 
-    internal CustomList(params T[] items) => this.items = items;
+    public CustomList(params T[] items) => this.items = items;
+
+    public static CustomList<T> Empty { get; } = new();
 
     public bool IsReadOnly => true;
 
