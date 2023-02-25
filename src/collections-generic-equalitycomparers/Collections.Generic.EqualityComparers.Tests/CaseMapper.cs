@@ -22,4 +22,20 @@ internal static class CaseMapper
     internal static CaseParamOfImmutableArray<T>[] MapToOfImmutableArray<T>(params CaseParamOfArray<T>[] @case)
         =>
         @case.Select(param => CaseParamMapper.MapToOfImmutableArray(param)).ToArray();
+
+    internal static IEnumerable<CaseParamOfImmutableArrayNullable<T>[]> MapToOfImmutableArrayNullable<T>(params CaseParamOfArray<T>[] @case)
+    {
+        yield return @case.Select(param => CaseParamMapper.MapToOfImmutableArrayNullable(param)).ToArray();
+        yield return @case.Select(param => CaseParamMapper.MapToOfImmutableArrayWrapped(param)).ToArray();
+        yield return new[]
+        {
+            CaseParamMapper.MapToOfImmutableArrayNullable(@case[0]),
+            CaseParamMapper.MapToOfImmutableArrayWrapped(@case[1])
+        };
+        yield return new[]
+        {
+            CaseParamMapper.MapToOfImmutableArrayWrapped(@case[0]),
+            CaseParamMapper.MapToOfImmutableArrayNullable(@case[1])
+        };
+    }
 }

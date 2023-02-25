@@ -19,8 +19,8 @@ public abstract class EqualityComparerTestsBase<T>
     [Fact]
     public void Test_GetHashCode_SourceIsDefault_ExpectZero()
     {
-        ImmutableArray<T> nullObj = default; 
-        var actual = comparer.GetHashCode(nullObj);
+        ImmutableArray<T> defaultObj = default;
+        var actual = comparer.GetHashCode(defaultObj);
         Assert.Equal(0, actual);
     }
 }
