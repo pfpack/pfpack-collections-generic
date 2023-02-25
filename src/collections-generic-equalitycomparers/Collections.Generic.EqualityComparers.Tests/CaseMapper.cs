@@ -16,7 +16,7 @@ internal static class CaseMapper
 
     internal static CaseParamOfList<T>[] MapToOfList<T>(params CaseParamOfArray<T>[] @case)
     {
-        var defaultEmpty = new List<T>();
+        var defaultEmpty = new List<T>(); // the empty per case
         return @case.Select(param => CaseParamMapper.MapToOfList(param, () => defaultEmpty)).ToArray();
     }
 
