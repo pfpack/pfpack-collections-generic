@@ -36,22 +36,20 @@ internal static class CaseMapper
             CaseParamMapper.MapToOfImmutableArrayNullable(param1)
         };
 
-        var wrappedDefaultCase = new CaseParamOfImmutableArrayNullable<T>(new ImmutableArray<T>?(default));
-
         switch (param0.Items, param1.Items)
         {
             case (null, null):
                 yield return new[]
                 {
-                    wrappedDefaultCase,
-                    wrappedDefaultCase
+                    BuildWrappedDefaultCase(),
+                    BuildWrappedDefaultCase()
                 };
                 break;
 
             case (null, _):
                 yield return new[]
                 {
-                    wrappedDefaultCase,
+                    BuildWrappedDefaultCase(),
                     CaseParamMapper.MapToOfImmutableArrayNullable(param1)
                 };
                 break;
@@ -60,9 +58,13 @@ internal static class CaseMapper
                 yield return new[]
                 {
                     CaseParamMapper.MapToOfImmutableArrayNullable(param0),
-                    wrappedDefaultCase
+                    BuildWrappedDefaultCase()
                 };
                 break;
         }
+
+        static CaseParamOfImmutableArrayNullable<T> BuildWrappedDefaultCase()
+            =>
+            new(new ImmutableArray<T>?(default));
     }
 }
