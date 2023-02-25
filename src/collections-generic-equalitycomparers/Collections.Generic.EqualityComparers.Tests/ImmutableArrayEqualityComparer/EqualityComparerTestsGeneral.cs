@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer;
 
-public sealed class EqualityComparerTestsGeneral<T>
+public sealed class EqualityComparerTestsGeneral
 {
     private readonly ImmutableArrayEqualityComparer<object> comparer
         = ImmutableArrayEqualityComparer<object>.Create(CustomEqualityComparer<object>.Default);

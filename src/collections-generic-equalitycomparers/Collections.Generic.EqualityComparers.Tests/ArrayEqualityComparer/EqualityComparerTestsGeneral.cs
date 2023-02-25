@@ -3,7 +3,7 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ArrayEqualityComparer;
 
-public sealed class EqualityComparerTestsGeneral<T>
+public sealed class EqualityComparerTestsGeneral
 {
     private readonly ArrayEqualityComparer<object> comparer
         = ArrayEqualityComparer<object>.Create(CustomEqualityComparer<object>.Default);
