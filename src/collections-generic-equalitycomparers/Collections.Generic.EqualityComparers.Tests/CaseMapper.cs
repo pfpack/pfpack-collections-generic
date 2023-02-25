@@ -44,7 +44,7 @@ internal static class CaseMapper
                     BuildWrappedDefaultCase(),
                     BuildWrappedDefaultCase()
                 };
-                break;
+                yield break;
 
             case (null, _):
                 yield return new[]
@@ -52,7 +52,7 @@ internal static class CaseMapper
                     BuildWrappedDefaultCase(),
                     CaseParamMapper.MapToOfImmutableArrayNullable(param1)
                 };
-                break;
+                yield break;
 
             case (_, null):
                 yield return new[]
@@ -60,7 +60,7 @@ internal static class CaseMapper
                     CaseParamMapper.MapToOfImmutableArrayNullable(param0),
                     BuildWrappedDefaultCase()
                 };
-                break;
+                yield break;
         }
 
         static CaseParamOfImmutableArrayNullable<T> BuildWrappedDefaultCase()
