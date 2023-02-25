@@ -52,6 +52,7 @@ internal static class CaseMapper
                     CaseParamMapper.MapToOfImmutableArrayNullable(param1)
                 };
                 break;
+
             case (_, null):
                 yield return new[]
                 {
