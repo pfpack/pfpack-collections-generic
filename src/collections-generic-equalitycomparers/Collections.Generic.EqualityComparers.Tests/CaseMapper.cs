@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
@@ -35,20 +36,22 @@ internal static class CaseMapper
             CaseParamMapper.MapToOfImmutableArrayNullable(param1)
         };
 
+        var wrappedDefaultCase = new CaseParamOfImmutableArrayNullable<T>(new ImmutableArray<T>?(default));
+
         switch (param0.Items, param1.Items)
         {
             case (null, null):
                 yield return new[]
                 {
-                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param0),
-                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param1)
+                    wrappedDefaultCase,
+                    wrappedDefaultCase
                 };
                 break;
 
             case (null, _):
                 yield return new[]
                 {
-                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param0),
+                    wrappedDefaultCase,
                     CaseParamMapper.MapToOfImmutableArrayNullable(param1)
                 };
                 break;
@@ -57,7 +60,7 @@ internal static class CaseMapper
                 yield return new[]
                 {
                     CaseParamMapper.MapToOfImmutableArrayNullable(param0),
-                    CaseParamMapper.MapToOfImmutableArrayNullableWrapped(param1)
+                    wrappedDefaultCase
                 };
                 break;
         }

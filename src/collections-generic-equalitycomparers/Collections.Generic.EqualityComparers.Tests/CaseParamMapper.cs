@@ -47,17 +47,6 @@ internal static class CaseParamMapper
             () => ImmutableArray<T>.Empty,
             items => ImmutableArray.Create(items)));
 
-    internal static CaseParamOfImmutableArrayNullable<T> MapToOfImmutableArrayNullableWrapped<T>(CaseParamOfArray<T> param)
-    {
-        Debug.Assert(param.Items is null, "The input immutable array is expected to be null.");
-
-        return new(InnerMapCase(
-            param.Items,
-            () => new ImmutableArray<T>?(default),
-            () => throw new InvalidOperationException(),
-            items => throw new InvalidOperationException()));
-    }
-
     private static TResult? InnerMapCase<T, TResult>(
         T[]? items,
         Func<TResult?> nullSupplier,
