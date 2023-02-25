@@ -2,11 +2,9 @@
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
 
-// This class in intended to make xUnit not to merge test cases with collections equal by value
-// (there is a difference between test cases with collections equal by value and by reference)
-public sealed class CaseParam<T>
+public sealed class CaseParam<T> : CaseParamBase<T, IReadOnlyList<T>>
 {
-    public IReadOnlyList<T>? Items { get; }
-
-    public CaseParam(IReadOnlyList<T>? items) => Items = items;
+    public CaseParam(IReadOnlyList<T>? items) : base(items)
+    {
+    }
 }
