@@ -90,6 +90,16 @@ internal static class CaseSourcesArrayStruct
     {
         yield return new[]
         {
+            null,
+            new int?[] { 1 },
+        };
+        yield return new[]
+        {
+            new int?[] { 1 },
+            null,
+        };
+        yield return new[]
+        {
             EmptyArray<int?>.Value,
             new int?[] { 1 },
         };

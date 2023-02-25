@@ -90,6 +90,16 @@ internal static class CaseSourcesArrayRef
     {
         yield return new[]
         {
+            null,
+            new[] { "1" },
+        };
+        yield return new[]
+        {
+            new[] { "1" },
+            null,
+        };
+        yield return new[]
+        {
             EmptyArray<string>.Value,
             new[] { "1" },
         };
