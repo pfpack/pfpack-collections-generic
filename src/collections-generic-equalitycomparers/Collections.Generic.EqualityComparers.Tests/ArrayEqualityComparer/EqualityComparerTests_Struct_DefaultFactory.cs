@@ -5,7 +5,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ArrayEqualit
 public sealed class EqualityComparerTests_Struct_DefaultFactory : EqualityComparerTestsBase_Struct
 {
     public EqualityComparerTests_Struct_DefaultFactory()
-        : base(() => ArrayEqualityComparer<int>.Create())
+        : base(() => ArrayEqualityComparer<int?>.Create())
     {
     }
 }
