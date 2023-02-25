@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
-// This class in intended to make xUnit not to merge test cases with collections equal by value.
+// This class in intended to make xUnit not to merge test cases of collections equal by value.
 // There is a difference between the test cases with collections equal by value and by reference.
 
 public sealed record class CaseParamOfArray<T>(T[]? Items);
