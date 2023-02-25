@@ -5,16 +5,16 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEqualityComparer.IList;
 
-public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBase<int>
+public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBase<int?>
 {
-    protected EqualityComparerTestsBase_Struct(Func<ListEqualityComparer<int>> comparerFactory)
+    protected EqualityComparerTestsBase_Struct(Func<ListEqualityComparer<int?>> comparerFactory)
         : base(comparerFactory)
     {
     }
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
-    public void Test_GetHashCode_SourceAreEqual_ExpectHashCodesAreEqual(CaseParam<int> source1, CaseParam<int> source2)
+    public void Test_GetHashCode_SourceAreEqual_ExpectHashCodesAreEqual(CaseParamOfIList<int?> source1, CaseParamOfIList<int?> source2)
     {
         var hashCode1 = comparer.GetHashCode(source1.Items);
         var hashCode2 = comparer.GetHashCode(source2.Items);
@@ -23,7 +23,7 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
-    public void Test_Equals_SourceAreEqual_ExpectTrue(CaseParam<int> source1, CaseParam<int> source2)
+    public void Test_Equals_SourceAreEqual_ExpectTrue(CaseParamOfIList<int?> source1, CaseParamOfIList<int?> source2)
     {
         var actualEquals = comparer.Equals(source1.Items, source2.Items);
         Assert.True(actualEquals);
@@ -31,7 +31,7 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
 
     [Theory]
     [MemberData(nameof(SourceAreNotEqualCases))]
-    public void Test_Equals_SourceAreNotEqual_ExpectTrue(CaseParam<int> source1, CaseParam<int> source2)
+    public void Test_Equals_SourceAreNotEqual_ExpectTrue(CaseParamOfIList<int?> source1, CaseParamOfIList<int?> source2)
     {
         var actualEquals = comparer.Equals(source1.Items, source2.Items);
         Assert.False(actualEquals);
@@ -39,122 +39,11 @@ public abstract class EqualityComparerTestsBase_Struct : EqualityComparerTestsBa
 
     public static IEnumerable<object[]> SourceAreEqualCases()
         =>
-        EnumerateSourceAreEqualCases().Select(
-            @case => new object[]
-            {
-                new CaseParam<int>(@case[0]),
-                new CaseParam<int>(@case[1]),
-            });
+        CaseSourcesArrayStruct.SourceAreEqualCases()
+        .Select(@case => CaseMapper.MapToOfIList(@case));
 
     public static IEnumerable<object[]> SourceAreNotEqualCases()
         =>
-        EnumerateSourceAreNotEqualCases().Select(
-            @case => new object[]
-            {
-                new CaseParam<int>(@case[0]),
-                new CaseParam<int>(@case[1]),
-            });
-
-    private static IEnumerable<IList<int>[]> EnumerateSourceAreEqualCases()
-    {
-        yield return new[]
-        {
-            CustomList<int>.Empty,
-            CustomList<int>.Empty,
-        };
-        yield return new[]
-        {
-            new CustomList<int>(),
-            new CustomList<int>(),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1),
-            CustomList.Create(1),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2),
-            CustomList.Create(1, 2),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2, 3),
-            CustomList.Create(1, 2, 3),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2, 3, 4),
-            CustomList.Create(1, 2, 3, 4),
-        };
-
-        var array1 = CustomList.Create(1);
-        var array2 = CustomList.Create(1, 2);
-        var array3 = CustomList.Create(1, 2, 3);
-        var array4 = CustomList.Create(1, 2, 3, 4);
-        yield return new[]
-        {
-            array1,
-            array1,
-        };
-        yield return new[]
-        {
-            array2,
-            array2,
-        };
-        yield return new[]
-        {
-            array3,
-            array3,
-        };
-        yield return new[]
-        {
-            array4,
-            array4,
-        };
-    }
-
-    private static IEnumerable<IList<int>[]> EnumerateSourceAreNotEqualCases()
-    {
-        yield return new[]
-        {
-            CustomList<int>.Empty,
-            CustomList.Create(1),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1),
-            CustomList<int>.Empty,
-        };
-        yield return new[]
-        {
-            CustomList.Create(1),
-            CustomList.Create(1, 2),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2),
-            CustomList.Create(1),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2),
-            CustomList.Create(1, 2, 3),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2, 3),
-            CustomList.Create(1, 2),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2, 3),
-            CustomList.Create(1, 2, 3, 4),
-        };
-        yield return new[]
-        {
-            CustomList.Create(1, 2, 3, 4),
-            CustomList.Create(1, 2, 3),
-        };
-    }
+        CaseSourcesArrayStruct.SourceAreNotEqualCases()
+        .Select(@case => CaseMapper.MapToOfIList(@case));
 }

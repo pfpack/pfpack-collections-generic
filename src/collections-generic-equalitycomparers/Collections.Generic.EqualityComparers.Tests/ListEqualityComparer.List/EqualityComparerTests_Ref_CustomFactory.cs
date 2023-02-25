@@ -5,7 +5,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEquality
 public sealed class EqualityComparerTests_Ref_CustomFactory : EqualityComparerTestsBase_Ref
 {
     public EqualityComparerTests_Ref_CustomFactory()
-        : base(() => ListEqualityComparer<string>.Create(CustomEqualityComparer<string>.Default))
+        : base(() => ListEqualityComparer<string?>.Create(CustomEqualityComparer<string?>.Default))
     {
     }
 }

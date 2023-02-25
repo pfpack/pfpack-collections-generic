@@ -5,7 +5,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEquality
 public sealed class EqualityComparerTests_Ref_DefaultInstance : EqualityComparerTestsBase_Ref
 {
     public EqualityComparerTests_Ref_DefaultInstance()
-        : base(() => ListEqualityComparer<string>.Default)
+        : base(() => ListEqualityComparer<string?>.Default)
     {
     }
 }

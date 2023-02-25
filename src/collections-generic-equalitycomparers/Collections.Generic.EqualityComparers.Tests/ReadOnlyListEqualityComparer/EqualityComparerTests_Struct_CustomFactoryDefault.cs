@@ -5,7 +5,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyList
 public sealed class EqualityComparerTests_Struct_CustomFactoryDefault : EqualityComparerTestsBase_Struct
 {
     public EqualityComparerTests_Struct_CustomFactoryDefault()
-        : base(() => ReadOnlyListEqualityComparer<int>.Create(EqualityComparer<int>.Default))
+        : base(() => ReadOnlyListEqualityComparer<int?>.Create(EqualityComparer<int?>.Default))
     {
     }
 }
