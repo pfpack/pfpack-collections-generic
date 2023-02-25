@@ -5,7 +5,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ArrayEqualit
 
 public sealed class EqualityComparerTestsGeneral
 {
-    private readonly ArrayEqualityComparer<object> comparer
+    private static readonly ArrayEqualityComparer<object> comparer
         = ArrayEqualityComparer<object>.Create(CustomEqualityComparer<object>.Default);
 
     [Fact]

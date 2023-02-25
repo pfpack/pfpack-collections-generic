@@ -6,7 +6,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEquality
 
 public sealed class EqualityComparerTestsStruct
 {
-    private readonly ListEqualityComparer<int?> comparer
+    private static readonly ListEqualityComparer<int?> comparer
         = ListEqualityComparer<int?>.Create(CustomEqualityComparer<int?>.Default);
 
     [Theory]

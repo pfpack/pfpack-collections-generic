@@ -6,7 +6,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArr
 
 public sealed class EqualityComparerTestsGeneral
 {
-    private readonly ImmutableArrayEqualityComparer<object> comparer
+    private static readonly ImmutableArrayEqualityComparer<object> comparer
         = ImmutableArrayEqualityComparer<object>.Create(CustomEqualityComparer<object>.Default);
 
     [Fact]
