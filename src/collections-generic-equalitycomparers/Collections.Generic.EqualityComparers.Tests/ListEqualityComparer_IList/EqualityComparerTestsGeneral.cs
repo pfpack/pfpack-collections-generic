@@ -13,6 +13,6 @@ public sealed class EqualityComparerTestsGeneral
     {
         IList<object>? nullObj = null;
         var actual = comparer.GetHashCode(nullObj);
-        Assert.Equal(0, actual);
+        Assert.StrictEqual(0, actual);
     }
 }

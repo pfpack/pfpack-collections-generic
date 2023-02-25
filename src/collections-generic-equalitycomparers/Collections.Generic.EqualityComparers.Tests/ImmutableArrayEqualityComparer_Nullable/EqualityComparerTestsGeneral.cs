@@ -14,7 +14,7 @@ public sealed class EqualityComparerTestsGeneral
     {
         ImmutableArray<object>? nullObj = default;
         var actual = comparer.GetHashCode(nullObj);
-        Assert.Equal(0, actual);
+        Assert.StrictEqual(0, actual);
     }
 
     [Fact]
@@ -22,6 +22,6 @@ public sealed class EqualityComparerTestsGeneral
     {
         var wrappedDefaultObj = new ImmutableArray<object>?(default);
         var actual = comparer.GetHashCode(wrappedDefaultObj);
-        Assert.Equal(0, actual);
+        Assert.StrictEqual(0, actual);
     }
 }
