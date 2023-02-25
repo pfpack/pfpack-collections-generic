@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
 
-public sealed class EqualityComparerTestsBase_Ref
+public sealed class EqualityComparerTestsRef
 {
     private readonly ReadOnlyListEqualityComparer<string?> comparer
         = ReadOnlyListEqualityComparer<string?>.Create(CustomEqualityComparer<string?>.Default);

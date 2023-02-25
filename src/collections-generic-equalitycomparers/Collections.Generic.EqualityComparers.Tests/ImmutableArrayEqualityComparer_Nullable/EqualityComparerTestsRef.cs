@@ -2,9 +2,9 @@
 using System.Linq;
 using Xunit;
 
-namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer.Nullable;
+namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ImmutableArrayEqualityComparer_Nullable;
 
-public sealed class EqualityComparerTestsBase_Ref
+public sealed class EqualityComparerTestsRef
 {
     private readonly ImmutableArrayEqualityComparer<string?> comparer
         = ImmutableArrayEqualityComparer<string?>.Create(CustomEqualityComparer<string?>.Default);

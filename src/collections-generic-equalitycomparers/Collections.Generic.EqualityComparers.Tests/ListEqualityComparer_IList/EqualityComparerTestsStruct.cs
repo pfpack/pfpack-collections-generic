@@ -2,9 +2,9 @@
 using System.Linq;
 using Xunit;
 
-namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEqualityComparer.IList;
+namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEqualityComparer_IList;
 
-public sealed class EqualityComparerTestsBase_Struct
+public sealed class EqualityComparerTestsStruct
 {
     private readonly ListEqualityComparer<int?> comparer
         = ListEqualityComparer<int?>.Create(CustomEqualityComparer<int?>.Default);

@@ -2,16 +2,16 @@
 using System.Linq;
 using Xunit;
 
-namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEqualityComparer.List;
+namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ListEqualityComparer_List;
 
-public sealed class EqualityComparerTestsBase_Ref
+public sealed class EqualityComparerTestsStruct
 {
-    private readonly ListEqualityComparer<string?> comparer
-        = ListEqualityComparer<string?>.Create(CustomEqualityComparer<string?>.Default);
+    private readonly ListEqualityComparer<int?> comparer
+        = ListEqualityComparer<int?>.Create(CustomEqualityComparer<int?>.Default);
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
-    public void Test_GetHashCode_SourceAreEqual_ExpectHashCodesAreEqual(CaseParamOfList<string?> source1, CaseParamOfList<string?> source2)
+    public void Test_GetHashCode_SourceAreEqual_ExpectHashCodesAreEqual(CaseParamOfList<int?> source1, CaseParamOfList<int?> source2)
     {
         var hashCode1 = comparer.GetHashCode(source1.Items);
         var hashCode2 = comparer.GetHashCode(source2.Items);
@@ -20,7 +20,7 @@ public sealed class EqualityComparerTestsBase_Ref
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
-    public void Test_Equals_SourceAreEqual_ExpectTrue(CaseParamOfList<string?> source1, CaseParamOfList<string?> source2)
+    public void Test_Equals_SourceAreEqual_ExpectTrue(CaseParamOfList<int?> source1, CaseParamOfList<int?> source2)
     {
         var actualEquals = comparer.Equals(source1.Items, source2.Items);
         Assert.True(actualEquals);
@@ -28,7 +28,7 @@ public sealed class EqualityComparerTestsBase_Ref
 
     [Theory]
     [MemberData(nameof(SourceAreNotEqualCases))]
-    public void Test_Equals_SourceAreNotEqual_ExpectTrue(CaseParamOfList<string?> source1, CaseParamOfList<string?> source2)
+    public void Test_Equals_SourceAreNotEqual_ExpectTrue(CaseParamOfList<int?> source1, CaseParamOfList<int?> source2)
     {
         var actualEquals = comparer.Equals(source1.Items, source2.Items);
         Assert.False(actualEquals);
@@ -36,11 +36,11 @@ public sealed class EqualityComparerTestsBase_Ref
 
     public static IEnumerable<object[]> SourceAreEqualCases()
         =>
-        CaseSourcesArrayRef.SourceAreEqualCases()
+        CaseSourcesArrayStruct.SourceAreEqualCases()
         .Select(@case => CaseMapper.MapToOfList(@case));
 
     public static IEnumerable<object[]> SourceAreNotEqualCases()
         =>
-        CaseSourcesArrayRef.SourceAreNotEqualCases()
+        CaseSourcesArrayStruct.SourceAreNotEqualCases()
         .Select(@case => CaseMapper.MapToOfList(@case));
 }
