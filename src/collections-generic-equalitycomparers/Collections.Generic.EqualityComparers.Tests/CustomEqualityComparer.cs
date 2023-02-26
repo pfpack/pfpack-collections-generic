@@ -13,5 +13,5 @@ internal sealed class CustomEqualityComparer<T> : IEqualityComparer<T>
         =>
         EqualityComparer<T>.Default.GetHashCode(obj);
 
-    public static CustomEqualityComparer<T> Default { get; } = new CustomEqualityComparer<T>();
+    public static CustomEqualityComparer<T> Default { get; } = new();
 }
