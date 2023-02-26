@@ -29,7 +29,7 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
             return true;
         }
 
-        if (x.IsDefault || y.IsDefault) // The default means null
+        if (x.IsDefault || y.IsDefault) // The null case
         {
             return false;
         }
@@ -53,7 +53,7 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public int GetHashCode(ImmutableArray<T> obj)
     {
-        if (obj.IsDefault) // Return zero instead of throwing ArgumentNullException
+        if (obj.IsDefault) // The null case
         {
             return default;
         }
@@ -71,11 +71,11 @@ public sealed class ImmutableArrayEqualityComparer<T> : IEqualityComparer<Immuta
 
     public bool Equals(ImmutableArray<T>? x, ImmutableArray<T>? y)
         =>
-        Equals(x ?? default, y ?? default); // The default means null
+        Equals(x.GetValueOrDefault(), y.GetValueOrDefault());
 
     public int GetHashCode(ImmutableArray<T>? obj)
         =>
-        GetHashCode(obj ?? default); // The default means null
+        GetHashCode(obj.GetValueOrDefault());
 
     private static class InnerDefault
     {
