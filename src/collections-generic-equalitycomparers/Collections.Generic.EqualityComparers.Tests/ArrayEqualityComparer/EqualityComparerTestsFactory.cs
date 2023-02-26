@@ -4,13 +4,13 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ArrayEqualityComparer;
 
-public sealed class EqualityComparerTestsFactory
+public static class EqualityComparerTestsFactory
 {
     private static Type ComparerType => typeof(ArrayEqualityComparer<object>);
 
     [Theory]
     [MemberData(nameof(Test_Factory_ExpectItemComparer_Cases))]
-    public void Test_Factory_ExpectItemComparer(ArrayEqualityComparer<object> comparer, object expectedItemComparer)
+    public static void Test_Factory_ExpectItemComparer(ArrayEqualityComparer<object> comparer, object expectedItemComparer)
         =>
         FactoryTestHelper.AssertItemComparerMatch(ComparerType, comparer, expectedItemComparer);
 

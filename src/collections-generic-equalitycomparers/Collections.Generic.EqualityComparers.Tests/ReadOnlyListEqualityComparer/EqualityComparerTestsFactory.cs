@@ -4,13 +4,13 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
 
-public sealed class EqualityComparerTestsFactory
+public static class EqualityComparerTestsFactory
 {
     private static Type ComparerType => typeof(ReadOnlyListEqualityComparer<object>);
 
     [Theory]
     [MemberData(nameof(Test_Factory_ExpectItemComparer_Cases))]
-    public void Test_Factory_ExpectItemComparer(ReadOnlyListEqualityComparer<object> comparer, object expectedItemComparer)
+    public static void Test_Factory_ExpectItemComparer(ReadOnlyListEqualityComparer<object> comparer, object expectedItemComparer)
         =>
         FactoryTestHelper.AssertItemComparerMatch(ComparerType, comparer, expectedItemComparer);
 

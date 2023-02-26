@@ -4,14 +4,14 @@ using Xunit;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests.ReadOnlyListEqualityComparer;
 
-public sealed class EqualityComparerTestsStruct
+public static class EqualityComparerTestsStruct
 {
     private static readonly ReadOnlyListEqualityComparer<int?> comparer
         = ReadOnlyListEqualityComparer<int?>.Create(CustomEqualityComparer<int?>.Default);
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
-    public void Test_GetHashCode_SourceAreEqual_ExpectHashCodesAreEqual(CaseParamOfIReadOnlyList<int?> source1, CaseParamOfIReadOnlyList<int?> source2)
+    public static void Test_GetHashCode_SourceAreEqual_ExpectHashCodesAreEqual(CaseParamOfIReadOnlyList<int?> source1, CaseParamOfIReadOnlyList<int?> source2)
     {
         var hashCode1 = comparer.GetHashCode(source1.Items);
         var hashCode2 = comparer.GetHashCode(source2.Items);
@@ -20,7 +20,7 @@ public sealed class EqualityComparerTestsStruct
 
     [Theory]
     [MemberData(nameof(SourceAreEqualCases))]
-    public void Test_Equals_SourceAreEqual_ExpectTrue(CaseParamOfIReadOnlyList<int?> source1, CaseParamOfIReadOnlyList<int?> source2)
+    public static void Test_Equals_SourceAreEqual_ExpectTrue(CaseParamOfIReadOnlyList<int?> source1, CaseParamOfIReadOnlyList<int?> source2)
     {
         var actualEquals = comparer.Equals(source1.Items, source2.Items);
         Assert.True(actualEquals);
@@ -28,7 +28,7 @@ public sealed class EqualityComparerTestsStruct
 
     [Theory]
     [MemberData(nameof(SourceAreNotEqualCases))]
-    public void Test_Equals_SourceAreNotEqual_ExpectTrue(CaseParamOfIReadOnlyList<int?> source1, CaseParamOfIReadOnlyList<int?> source2)
+    public static void Test_Equals_SourceAreNotEqual_ExpectTrue(CaseParamOfIReadOnlyList<int?> source1, CaseParamOfIReadOnlyList<int?> source2)
     {
         var actualEquals = comparer.Equals(source1.Items, source2.Items);
         Assert.False(actualEquals);
