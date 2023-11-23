@@ -17,7 +17,7 @@
     <Description>PrimeFuncPack Generic Collections is a core library pack for .NET consisting of collection extensions such as collection value equality comparers.</Description>
     <RootNamespace>System.Collections.Generic</RootNamespace>
     <AssemblyName>PrimeFuncPack.Collections.Generic</AssemblyName>
-    <Version>1.0.1-rc.1</Version>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Collections.Generic.EqualityComparers" Version="1.0.1-rc.1" />
+    <PackageReference Include="PrimeFuncPack.Collections.Generic.EqualityComparers" Version="1.0.1" />
   </ItemGroup>
 
 </Project>
