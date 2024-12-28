@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
-internal static class CaseSourcesArrayRef
+partial class CaseSources
 {
-    internal static IEnumerable<(string?[]? X, string?[]? Y)> SourceAreEqualCases()
+    private static IEnumerable<(string?[]? X, string?[]? Y)> EqualArraysOfString()
     {
         // Equal by reference
 
@@ -67,7 +67,7 @@ internal static class CaseSourcesArrayRef
         );
     }
 
-    internal static IEnumerable<(string?[]? X, string?[]? Y)> SourceAreNotEqualCases()
+    private static IEnumerable<(string?[]? X, string?[]? Y)> NotEqualArraysOfString()
     {
         yield return (
             null,

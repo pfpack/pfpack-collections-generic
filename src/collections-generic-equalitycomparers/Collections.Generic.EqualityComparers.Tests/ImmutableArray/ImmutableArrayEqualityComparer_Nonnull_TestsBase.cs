@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 public abstract class ImmutableArrayEqualityComparer_Nonnull_TestsBase<T> : ImmutableArrayEqualityComparer_TestsBase<T>
 {
     [Fact]
-    public static void Test_GetHashCode_SourceIsDefault_ExpectZero()
+    public static void Test_GetHashCode_InputIsDefault_ExpectZero()
     {
         var comparer = BuildComparer();
         ImmutableArray<T> nullObj = default;
@@ -15,7 +15,43 @@ public abstract class ImmutableArrayEqualityComparer_Nonnull_TestsBase<T> : Immu
         Assert.StrictEqual(0, actual);
     }
 
-    protected static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> MapEqualsCases(
+    [Theory]
+    [MemberData(nameof(InputsAreEqualCases))]
+    public static void Test_GetHashCode_InputsAreEqual_ExpectHashCodesAreEqual(CaseParamOfImmutableArray<T> input1, CaseParamOfImmutableArray<T> input2)
+    {
+        var comparer = BuildComparer();
+        var hashCode1 = comparer.GetHashCode(input1.Items);
+        var hashCode2 = comparer.GetHashCode(input2.Items);
+        Assert.StrictEqual(hashCode1, hashCode2);
+    }
+
+    [Theory]
+    [MemberData(nameof(InputsAreEqualCases))]
+    public static void Test_Equals_InputsAreEqual_ExpectTrue(CaseParamOfImmutableArray<T> input1, CaseParamOfImmutableArray<T> input2)
+    {
+        var comparer = BuildComparer();
+        var actualEquals = comparer.Equals(input1.Items, input2.Items);
+        Assert.True(actualEquals);
+    }
+
+    [Theory]
+    [MemberData(nameof(InputsAreNotEqualCases))]
+    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfImmutableArray<T> input1, CaseParamOfImmutableArray<T> input2)
+    {
+        var comparer = BuildComparer();
+        var actualEquals = comparer.Equals(input1.Items, input2.Items);
+        Assert.False(actualEquals);
+    }
+
+    public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> InputsAreEqualCases()
+        =>
+        MapEqualsCases(CaseSources.EqualArrays<T>());
+
+    public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+
+    private static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)
     {
         var result = new TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>>();

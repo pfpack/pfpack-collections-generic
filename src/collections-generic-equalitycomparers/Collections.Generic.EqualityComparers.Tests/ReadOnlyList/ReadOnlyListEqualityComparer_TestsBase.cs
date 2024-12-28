@@ -12,12 +12,40 @@ public abstract class ReadOnlyListEqualityComparer_TestsBase<T>
        FactoryAssert.AssertItemComparer(comparer, expectedItemComparer);
 
     [Fact]
-    public static void Test_GetHashCode_SourceIsNull_ExpectZero()
+    public static void Test_GetHashCode_InputIsNull_ExpectZero()
     {
         var comparer = BuildComparer();
         IReadOnlyList<T>? nullObj = null;
         var actual = comparer.GetHashCode(nullObj);
         Assert.StrictEqual(0, actual);
+    }
+
+    [Theory]
+    [MemberData(nameof(InputsAreEqualCases))]
+    public static void Test_GetHashCode_InputsAreEqual_ExpectHashCodesAreEqual(CaseParamOfIReadOnlyList<T> input1, CaseParamOfIReadOnlyList<T> input2)
+    {
+        var comparer = BuildComparer();
+        var hashCode1 = comparer.GetHashCode(input1.Items);
+        var hashCode2 = comparer.GetHashCode(input2.Items);
+        Assert.StrictEqual(hashCode1, hashCode2);
+    }
+
+    [Theory]
+    [MemberData(nameof(InputsAreEqualCases))]
+    public static void Test_Equals_InputsAreEqual_ExpectTrue(CaseParamOfIReadOnlyList<T> input1, CaseParamOfIReadOnlyList<T> input2)
+    {
+        var comparer = BuildComparer();
+        var actualEquals = comparer.Equals(input1.Items, input2.Items);
+        Assert.True(actualEquals);
+    }
+
+    [Theory]
+    [MemberData(nameof(InputsAreNotEqualCases))]
+    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfIReadOnlyList<T> input1, CaseParamOfIReadOnlyList<T> input2)
+    {
+        var comparer = BuildComparer();
+        var actualEquals = comparer.Equals(input1.Items, input2.Items);
+        Assert.False(actualEquals);
     }
 
     public static TheoryData<ReadOnlyListEqualityComparer<T>, IEqualityComparer<T>> Test_Factory_ExpectItemComparer_Cases => new()
@@ -44,11 +72,19 @@ public abstract class ReadOnlyListEqualityComparer_TestsBase<T>
         },
     };
 
-    protected static ReadOnlyListEqualityComparer<T> BuildComparer()
+    public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> InputsAreEqualCases()
+        =>
+        MapEqualsCases(CaseSources.EqualArrays<T>());
+
+    public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+
+    private static ReadOnlyListEqualityComparer<T> BuildComparer()
         =>
         ReadOnlyListEqualityComparer<T>.Create(CustomEqualityComparer<T>.Default);
 
-    protected static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> MapEqualsCases(
+    private static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)
     {
         var result = new TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>>();
