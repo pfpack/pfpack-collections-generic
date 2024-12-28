@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);IDE0130</NoWarn>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -17,7 +19,7 @@
     <Description>PrimeFuncPack Generic Collections.EqualityComparers is a core library for .NET consisting of collection value equality comparers.</Description>
     <RootNamespace>System.Collections.Generic</RootNamespace>
     <AssemblyName>PrimeFuncPack.Collections.Generic.EqualityComparers</AssemblyName>
-    <Version>1.0.1</Version>
+    <Version>1.0.2-rc.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
