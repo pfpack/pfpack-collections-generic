@@ -7,9 +7,9 @@ public abstract class ImmutableArrayEqualityComparer_TestsBase<T>
 {
     [Theory]
     [MemberData(nameof(Test_Factory_ExpectItemComparer_Cases))]
-    public static void Test_Factory_ExpectItemComparer(ImmutableArrayEqualityComparer<T> comparer, IEqualityComparer<T> expectedItemComparer)
+    public static void Test_Factory_ExpectItemComparer(ImmutableArrayEqualityComparer<T> comparer, IEqualityComparer<T> expected)
         =>
-        FactoryAssert.AssertItemComparer(comparer, expectedItemComparer);
+        FactoryAssert.AssertItemComparer(comparer, expected);
 
     public static TheoryData<ImmutableArrayEqualityComparer<T>, IEqualityComparer<T>> Test_Factory_ExpectItemComparer_Cases => new()
     {

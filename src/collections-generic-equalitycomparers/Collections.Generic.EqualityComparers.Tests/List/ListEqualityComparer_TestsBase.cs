@@ -7,9 +7,9 @@ public abstract class ListEqualityComparer_TestsBase<T>
 {
     [Theory]
     [MemberData(nameof(Test_Factory_ExpectItemComparer_Cases))]
-    public static void Test_Factory_ExpectItemComparer(ListEqualityComparer<T> comparer, IEqualityComparer<T> expectedItemComparer)
+    public static void Test_Factory_ExpectItemComparer(ListEqualityComparer<T> comparer, IEqualityComparer<T> expected)
         =>
-        FactoryAssert.AssertItemComparer(comparer, expectedItemComparer);
+        FactoryAssert.AssertItemComparer(comparer, expected);
 
     public static TheoryData<ListEqualityComparer<T>, IEqualityComparer<T>> Test_Factory_ExpectItemComparer_Cases => new()
     {

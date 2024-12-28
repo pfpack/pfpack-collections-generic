@@ -7,9 +7,9 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
 {
     [Theory]
     [MemberData(nameof(Test_Factory_ExpectItemComparer_Cases))]
-    public static void Test_Factory_ExpectItemComparer(ArrayEqualityComparer<T> comparer, IEqualityComparer<T> expectedItemComparer)
+    public static void Test_Factory_ExpectItemComparer(ArrayEqualityComparer<T> comparer, IEqualityComparer<T> expected)
         =>
-        FactoryAssert.AssertItemComparer(comparer, expectedItemComparer);
+        FactoryAssert.AssertItemComparer(comparer, expected);
 
     [Fact]
     public static void Test_GetHashCode_InputIsNull_ExpectZero()

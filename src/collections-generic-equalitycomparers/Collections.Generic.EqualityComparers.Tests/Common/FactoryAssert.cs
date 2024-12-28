@@ -7,8 +7,8 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 internal static class FactoryAssert
 {
     internal static void AssertItemComparer<TCollectionComparer, T>(
-        TCollectionComparer collectionComparer,
-        IEqualityComparer<T> expectedItemComparer)
+        TCollectionComparer comparer,
+        IEqualityComparer<T> expected)
     {
         var field = typeof(TCollectionComparer).GetField("comparer", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -16,7 +16,7 @@ internal static class FactoryAssert
         Assert.True(field.IsPrivate);
         Assert.True(field.IsInitOnly);
 
-        var itemComparer = field.GetValue(collectionComparer);
-        Assert.Same(itemComparer, expectedItemComparer);
+        var actual = field.GetValue(comparer);
+        Assert.Same(actual, expected);
     }
 }
