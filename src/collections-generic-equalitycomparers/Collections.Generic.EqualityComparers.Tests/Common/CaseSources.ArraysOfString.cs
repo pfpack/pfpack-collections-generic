@@ -71,6 +71,12 @@ partial class CaseSources
     {
         yield return (
             null,
+            EmptyArray<string>.Value);
+        yield return (
+            EmptyArray<string>.Value,
+            null);
+        yield return (
+            null,
             new[] { "1" }
         );
         yield return (
