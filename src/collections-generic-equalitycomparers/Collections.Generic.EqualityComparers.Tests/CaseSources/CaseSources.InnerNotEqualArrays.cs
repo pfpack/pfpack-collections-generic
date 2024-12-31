@@ -5,16 +5,16 @@ namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
 partial class CaseSources
 {
-    internal static IEnumerable<(T[]? X, T[]? Y)> EqualArrays<T>()
+    private static IEnumerable<(T[]? X, T[]? Y)> InnerNotEqualArrays<T>()
     {
         if (typeof(T) == typeof(string))
         {
-            return (IEnumerable<(T[]? X, T[]? Y)>)InnerEqualArraysOfString();
+            return (IEnumerable<(T[]? X, T[]? Y)>)InnerNotEqualArraysOfString();
         }
 
         if (typeof(T) == typeof(int?))
         {
-            return (IEnumerable<(T[]? X, T[]? Y)>)InnerEqualArraysOfInt32Nullable();
+            return (IEnumerable<(T[]? X, T[]? Y)>)InnerNotEqualArraysOfInt32Nullable();
         }
 
         throw new ArgumentException($"An unexpected type ({typeof(T).Name}).", nameof(T));
