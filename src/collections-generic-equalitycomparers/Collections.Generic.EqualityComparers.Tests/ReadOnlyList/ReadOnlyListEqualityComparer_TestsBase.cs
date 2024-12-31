@@ -40,7 +40,7 @@ public abstract class ReadOnlyListEqualityComparer_TestsBase<T>
     }
 
     [Theory]
-    [MemberData(nameof(InputsAreNotEqualCases))]
+    [MemberData(nameof(Equals_InputsAreNotEqualCases))]
     public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfIReadOnlyList<T> input1, CaseParamOfIReadOnlyList<T> input2)
     {
         var comparer = BuildComparer();
@@ -76,9 +76,9 @@ public abstract class ReadOnlyListEqualityComparer_TestsBase<T>
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> InputsAreNotEqualCases()
+    public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+        MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
 
     private static ReadOnlyListEqualityComparer<T> BuildComparer()
         =>

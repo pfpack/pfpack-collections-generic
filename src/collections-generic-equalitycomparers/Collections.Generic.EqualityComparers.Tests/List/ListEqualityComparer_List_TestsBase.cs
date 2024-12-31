@@ -34,7 +34,7 @@ public abstract class ListEqualityComparer_List_TestsBase<T> : ListEqualityCompa
     }
 
     [Theory]
-    [MemberData(nameof(InputsAreNotEqualCases))]
+    [MemberData(nameof(Equals_InputsAreNotEqualCases))]
     public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfList<T> input1, CaseParamOfList<T> input2)
     {
         var comparer = BuildComparer();
@@ -46,9 +46,9 @@ public abstract class ListEqualityComparer_List_TestsBase<T> : ListEqualityCompa
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> InputsAreNotEqualCases()
+    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+        MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)

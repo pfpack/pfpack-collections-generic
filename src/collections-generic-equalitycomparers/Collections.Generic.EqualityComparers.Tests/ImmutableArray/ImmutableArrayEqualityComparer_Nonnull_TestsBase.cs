@@ -35,7 +35,7 @@ public abstract class ImmutableArrayEqualityComparer_Nonnull_TestsBase<T> : Immu
     }
 
     [Theory]
-    [MemberData(nameof(InputsAreNotEqualCases))]
+    [MemberData(nameof(Equals_InputsAreNotEqualCases))]
     public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfImmutableArray<T> input1, CaseParamOfImmutableArray<T> input2)
     {
         var comparer = BuildComparer();
@@ -47,9 +47,9 @@ public abstract class ImmutableArrayEqualityComparer_Nonnull_TestsBase<T> : Immu
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> InputsAreNotEqualCases()
+    public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+        MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)

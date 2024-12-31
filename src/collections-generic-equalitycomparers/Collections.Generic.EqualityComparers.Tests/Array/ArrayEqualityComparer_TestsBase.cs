@@ -40,7 +40,7 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
     }
 
     [Theory]
-    [MemberData(nameof(InputsAreNotEqualCases))]
+    [MemberData(nameof(Equals_InputsAreNotEqualCases))]
     public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfArray<T> input1, CaseParamOfArray<T> input2)
     {
         var comparer = BuildComparer();
@@ -76,9 +76,9 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> InputsAreNotEqualCases()
+    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+        MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
 
     private static ArrayEqualityComparer<T> BuildComparer()
         =>
