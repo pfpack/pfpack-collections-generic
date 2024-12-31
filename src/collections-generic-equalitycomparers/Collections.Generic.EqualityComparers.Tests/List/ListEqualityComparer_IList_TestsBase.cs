@@ -45,7 +45,7 @@ public abstract class ListEqualityComparer_IList_TestsBase<T> : ListEqualityComp
 
     [Theory]
     [MemberData(nameof(Equals_InputsAreNotEqualCases))]
-    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfIList<T> input1, CaseParamOfIList<T> input2)
+    public static void Test_Equals_InputsAreNotEqual_ExpectFalse(CaseParamOfIList<T> input1, CaseParamOfIList<T> input2)
     {
         var comparer = BuildComparer();
         var actualEquals = comparer.Equals(input1.Items, input2.Items);

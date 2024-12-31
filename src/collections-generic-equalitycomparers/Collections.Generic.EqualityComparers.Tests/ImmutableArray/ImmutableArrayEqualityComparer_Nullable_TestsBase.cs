@@ -54,7 +54,7 @@ public abstract class ImmutableArrayEqualityComparer_Nullable_TestsBase<T> : Imm
 
     [Theory]
     [MemberData(nameof(Equals_InputsAreNotEqualCases))]
-    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfImmutableArrayNullable<T> input1, CaseParamOfImmutableArrayNullable<T> input2)
+    public static void Test_Equals_InputsAreNotEqual_ExpectFalse(CaseParamOfImmutableArrayNullable<T> input1, CaseParamOfImmutableArrayNullable<T> input2)
     {
         var comparer = BuildComparer();
         var actualEquals = comparer.Equals(input1.Items, input2.Items);

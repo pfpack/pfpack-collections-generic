@@ -46,7 +46,7 @@ public abstract class ImmutableArrayEqualityComparer_Nonnull_TestsBase<T> : Immu
 
     [Theory]
     [MemberData(nameof(Equals_InputsAreNotEqualCases))]
-    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfImmutableArray<T> input1, CaseParamOfImmutableArray<T> input2)
+    public static void Test_Equals_InputsAreNotEqual_ExpectFalse(CaseParamOfImmutableArray<T> input1, CaseParamOfImmutableArray<T> input2)
     {
         var comparer = BuildComparer();
         var actualEquals = comparer.Equals(input1.Items, input2.Items);

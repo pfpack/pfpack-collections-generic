@@ -51,7 +51,7 @@ public abstract class ReadOnlyListEqualityComparer_TestsBase<T>
 
     [Theory]
     [MemberData(nameof(Equals_InputsAreNotEqualCases))]
-    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfIReadOnlyList<T> input1, CaseParamOfIReadOnlyList<T> input2)
+    public static void Test_Equals_InputsAreNotEqual_ExpectFalse(CaseParamOfIReadOnlyList<T> input1, CaseParamOfIReadOnlyList<T> input2)
     {
         var comparer = BuildComparer();
         var actualEquals = comparer.Equals(input1.Items, input2.Items);
