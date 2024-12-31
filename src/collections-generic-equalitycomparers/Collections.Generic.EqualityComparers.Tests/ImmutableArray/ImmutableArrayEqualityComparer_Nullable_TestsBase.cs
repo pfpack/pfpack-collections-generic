@@ -65,13 +65,13 @@ public abstract class ImmutableArrayEqualityComparer_Nullable_TestsBase<T> : Imm
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> GetHashCode_InputsAreNotEqualCases()
-        =>
-        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
-
     public static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> Equals_InputsAreNotEqualCases()
         =>
         MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
+
+    public static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)

@@ -86,13 +86,13 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> GetHashCode_InputsAreNotEqualCases()
-        =>
-        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
-
     public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> Equals_InputsAreNotEqualCases()
         =>
         MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
+
+    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
 
     private static ArrayEqualityComparer<T> BuildComparer()
         =>

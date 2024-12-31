@@ -57,13 +57,13 @@ public abstract class ImmutableArrayEqualityComparer_Nonnull_TestsBase<T> : Immu
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> GetHashCode_InputsAreNotEqualCases()
-        =>
-        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
-
     public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> Equals_InputsAreNotEqualCases()
         =>
         MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
+
+    public static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfImmutableArray<T>, CaseParamOfImmutableArray<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)

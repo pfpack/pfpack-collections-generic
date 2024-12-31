@@ -56,13 +56,13 @@ public abstract class ListEqualityComparer_List_TestsBase<T> : ListEqualityCompa
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> GetHashCode_InputsAreNotEqualCases()
-        =>
-        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
-
     public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> Equals_InputsAreNotEqualCases()
         =>
         MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
+
+    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)
