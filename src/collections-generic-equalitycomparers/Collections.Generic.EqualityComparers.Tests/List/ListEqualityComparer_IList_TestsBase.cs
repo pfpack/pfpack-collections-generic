@@ -25,6 +25,16 @@ public abstract class ListEqualityComparer_IList_TestsBase<T> : ListEqualityComp
     }
 
     [Theory]
+    [MemberData(nameof(GetHashCode_InputsAreNotEqualCases))]
+    public static void Test_GetHashCode_InputsAreNotEqual_ExpectHashCodesAreNotEqual(CaseParamOfIList<T> input1, CaseParamOfIList<T> input2)
+    {
+        var comparer = BuildComparer();
+        var hashCode1 = comparer.GetHashCode(input1.Items);
+        var hashCode2 = comparer.GetHashCode(input2.Items);
+        Assert.NotStrictEqual(hashCode1, hashCode2);
+    }
+
+    [Theory]
     [MemberData(nameof(InputsAreEqualCases))]
     public static void Test_Equals_InputsAreEqual_ExpectTrue(CaseParamOfIList<T> input1, CaseParamOfIList<T> input2)
     {
@@ -45,6 +55,10 @@ public abstract class ListEqualityComparer_IList_TestsBase<T> : ListEqualityComp
     public static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> InputsAreEqualCases()
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
+
+    public static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
 
     public static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> Equals_InputsAreNotEqualCases()
         =>

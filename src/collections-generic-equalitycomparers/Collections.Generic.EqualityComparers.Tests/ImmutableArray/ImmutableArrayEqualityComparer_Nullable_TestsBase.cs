@@ -34,6 +34,16 @@ public abstract class ImmutableArrayEqualityComparer_Nullable_TestsBase<T> : Imm
     }
 
     [Theory]
+    [MemberData(nameof(GetHashCode_InputsAreNotEqualCases))]
+    public static void Test_GetHashCode_InputsAreNotEqual_ExpectHashCodesAreNotEqual(CaseParamOfImmutableArrayNullable<T> input1, CaseParamOfImmutableArrayNullable<T> input2)
+    {
+        var comparer = BuildComparer();
+        var hashCode1 = comparer.GetHashCode(input1.Items);
+        var hashCode2 = comparer.GetHashCode(input2.Items);
+        Assert.NotStrictEqual(hashCode1, hashCode2);
+    }
+
+    [Theory]
     [MemberData(nameof(InputsAreEqualCases))]
     public static void Test_Equals_InputsAreEqual_ExpectTrue(CaseParamOfImmutableArrayNullable<T> input1, CaseParamOfImmutableArrayNullable<T> input2)
     {
@@ -54,6 +64,10 @@ public abstract class ImmutableArrayEqualityComparer_Nullable_TestsBase<T> : Imm
     public static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> InputsAreEqualCases()
         =>
         MapEqualsCases(CaseSources.EqualArrays<T>());
+
+    public static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
 
     public static TheoryData<CaseParamOfImmutableArrayNullable<T>, CaseParamOfImmutableArrayNullable<T>> Equals_InputsAreNotEqualCases()
         =>
