@@ -33,6 +33,10 @@ partial class NotEqualCaseSource_Equals
         );
         yield return (
             new int?[] { null },
+            new int?[] { 0 }
+        );
+        yield return (
+            new int?[] { null },
             new int?[] { 1 }
         );
         yield return (
@@ -49,11 +53,7 @@ partial class NotEqualCaseSource_Equals
         );
         yield return (
             new int?[] { 1, 2, 3, 4 },
-            new int?[] { 1, 2, 3, 3 }
-        );
-        yield return (
-            new int?[] { 1, 2, 3, 4 },
-            new int?[] { 1, 2, 2, 4 }
+            new int?[] { 0, 2, 3, 4 }
         );
         yield return (
             new int?[] { 1, 2, 3, 4 },
@@ -61,7 +61,11 @@ partial class NotEqualCaseSource_Equals
         );
         yield return (
             new int?[] { 1, 2, 3, 4 },
-            new int?[] { 0, 2, 3, 4 }
+            new int?[] { 1, 2, 2, 4 }
+        );
+        yield return (
+            new int?[] { 1, 2, 3, 4 },
+            new int?[] { 1, 2, 3, 3 }
         );
     }
 }
