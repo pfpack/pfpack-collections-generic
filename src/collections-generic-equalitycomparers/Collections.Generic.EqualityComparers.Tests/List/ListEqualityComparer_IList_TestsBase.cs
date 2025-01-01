@@ -54,15 +54,15 @@ public abstract class ListEqualityComparer_IList_TestsBase<T> : ListEqualityComp
 
     public static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> InputsAreEqualCases()
         =>
-        MapEqualsCases(CaseSources.EqualArrays<T>());
+        MapEqualsCases(EqualCaseSource.EqualArrays<T>());
 
     public static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
+        MapEqualsCases(NotEqualCaseSource_Equals.NotEqualArrays<T>());
 
     public static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> GetHashCode_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
+        MapEqualsCases(NotEqualCaseSource_GetHashCode.NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfIList<T>, CaseParamOfIList<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)

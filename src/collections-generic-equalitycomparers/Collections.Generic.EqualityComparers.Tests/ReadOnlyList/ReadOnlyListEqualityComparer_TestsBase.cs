@@ -84,15 +84,15 @@ public abstract class ReadOnlyListEqualityComparer_TestsBase<T>
 
     public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> InputsAreEqualCases()
         =>
-        MapEqualsCases(CaseSources.EqualArrays<T>());
+        MapEqualsCases(EqualCaseSource.EqualArrays<T>());
 
     public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.Equals_NotEqualArrays<T>());
+        MapEqualsCases(NotEqualCaseSource_Equals.NotEqualArrays<T>());
 
     public static TheoryData<CaseParamOfIReadOnlyList<T>, CaseParamOfIReadOnlyList<T>> GetHashCode_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.GetHashCode_NotEqualArrays<T>());
+        MapEqualsCases(NotEqualCaseSource_GetHashCode.NotEqualArrays<T>());
 
     private static ReadOnlyListEqualityComparer<T> BuildComparer()
         =>

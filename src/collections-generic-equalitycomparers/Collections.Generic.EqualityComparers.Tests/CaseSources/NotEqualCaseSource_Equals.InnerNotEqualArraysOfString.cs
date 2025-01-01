@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Collections.Generic.EqualityComparers.Tests;
 
-partial class CaseSources
+partial class NotEqualCaseSource_Equals
 {
     private static IEnumerable<(string?[]? X, string?[]? Y)> InnerNotEqualArraysOfString()
     {
@@ -45,7 +45,7 @@ partial class CaseSources
         );
         yield return (
             new[] { "1", "2", "3" },
-            new[] { "1", "1", "3" }
+            new[] { "1", "0", "3" }
         );
         yield return (
             new[] { "1", "2", "3", "4" },
