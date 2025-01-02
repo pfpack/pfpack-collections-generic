@@ -31,6 +31,16 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
     }
 
     [Theory]
+    [MemberData(nameof(GetHashCode_InputsAreNotEqualCases))]
+    public static void Test_GetHashCode_InputsAreNotEqual_ExpectHashCodesAreNotEqual(CaseParamOfArray<T> input1, CaseParamOfArray<T> input2)
+    {
+        var comparer = BuildComparer();
+        var hashCode1 = comparer.GetHashCode(input1.Items);
+        var hashCode2 = comparer.GetHashCode(input2.Items);
+        Assert.NotStrictEqual(hashCode1, hashCode2);
+    }
+
+    [Theory]
     [MemberData(nameof(InputsAreEqualCases))]
     public static void Test_Equals_InputsAreEqual_ExpectTrue(CaseParamOfArray<T> input1, CaseParamOfArray<T> input2)
     {
@@ -40,8 +50,8 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
     }
 
     [Theory]
-    [MemberData(nameof(InputsAreNotEqualCases))]
-    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfArray<T> input1, CaseParamOfArray<T> input2)
+    [MemberData(nameof(Equals_InputsAreNotEqualCases))]
+    public static void Test_Equals_InputsAreNotEqual_ExpectFalse(CaseParamOfArray<T> input1, CaseParamOfArray<T> input2)
     {
         var comparer = BuildComparer();
         var actualEquals = comparer.Equals(input1.Items, input2.Items);
@@ -74,11 +84,15 @@ public abstract class ArrayEqualityComparer_TestsBase<T>
 
     public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> InputsAreEqualCases()
         =>
-        MapEqualsCases(CaseSources.EqualArrays<T>());
+        MapEqualsCases(EqualCaseSource.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> InputsAreNotEqualCases()
+    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+        MapEqualsCases(NotEqualCaseSource_Equals.NotEqualArrays<T>());
+
+    public static TheoryData<CaseParamOfArray<T>, CaseParamOfArray<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(NotEqualCaseSource_GetHashCode.NotEqualArrays<T>());
 
     private static ArrayEqualityComparer<T> BuildComparer()
         =>

@@ -15,11 +15,11 @@
     <RepositoryUrl>https://github.com/pfpack/pfpack-collections-generic</RepositoryUrl>
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
-    <Copyright>Copyright © 2022-2023 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <Copyright>Copyright © 2022-2025 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <Description>PrimeFuncPack Generic Collections.EqualityComparers is a core library for .NET consisting of collection value equality comparers.</Description>
     <RootNamespace>System.Collections.Generic</RootNamespace>
     <AssemblyName>PrimeFuncPack.Collections.Generic.EqualityComparers</AssemblyName>
-    <Version>1.0.2-rc.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

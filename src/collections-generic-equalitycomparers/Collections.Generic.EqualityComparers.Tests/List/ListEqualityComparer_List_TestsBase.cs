@@ -25,6 +25,16 @@ public abstract class ListEqualityComparer_List_TestsBase<T> : ListEqualityCompa
     }
 
     [Theory]
+    [MemberData(nameof(GetHashCode_InputsAreNotEqualCases))]
+    public static void Test_GetHashCode_InputsAreNotEqual_ExpectHashCodesAreNotEqual(CaseParamOfList<T> input1, CaseParamOfList<T> input2)
+    {
+        var comparer = BuildComparer();
+        var hashCode1 = comparer.GetHashCode(input1.Items);
+        var hashCode2 = comparer.GetHashCode(input2.Items);
+        Assert.NotStrictEqual(hashCode1, hashCode2);
+    }
+
+    [Theory]
     [MemberData(nameof(InputsAreEqualCases))]
     public static void Test_Equals_InputsAreEqual_ExpectTrue(CaseParamOfList<T> input1, CaseParamOfList<T> input2)
     {
@@ -34,8 +44,8 @@ public abstract class ListEqualityComparer_List_TestsBase<T> : ListEqualityCompa
     }
 
     [Theory]
-    [MemberData(nameof(InputsAreNotEqualCases))]
-    public static void Test_Equals_InputsAreNotEqual_ExpectTrue(CaseParamOfList<T> input1, CaseParamOfList<T> input2)
+    [MemberData(nameof(Equals_InputsAreNotEqualCases))]
+    public static void Test_Equals_InputsAreNotEqual_ExpectFalse(CaseParamOfList<T> input1, CaseParamOfList<T> input2)
     {
         var comparer = BuildComparer();
         var actualEquals = comparer.Equals(input1.Items, input2.Items);
@@ -44,11 +54,15 @@ public abstract class ListEqualityComparer_List_TestsBase<T> : ListEqualityCompa
 
     public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> InputsAreEqualCases()
         =>
-        MapEqualsCases(CaseSources.EqualArrays<T>());
+        MapEqualsCases(EqualCaseSource.EqualArrays<T>());
 
-    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> InputsAreNotEqualCases()
+    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> Equals_InputsAreNotEqualCases()
         =>
-        MapEqualsCases(CaseSources.NotEqualArrays<T>());
+        MapEqualsCases(NotEqualCaseSource_Equals.NotEqualArrays<T>());
+
+    public static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> GetHashCode_InputsAreNotEqualCases()
+        =>
+        MapEqualsCases(NotEqualCaseSource_GetHashCode.NotEqualArrays<T>());
 
     private static TheoryData<CaseParamOfList<T>, CaseParamOfList<T>> MapEqualsCases(
         IEnumerable<(T[]? X, T[]? Y)> cases)
